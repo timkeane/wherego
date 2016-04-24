@@ -1,34 +1,90 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
+<head>
+	<meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+ 	<title>Know Where To Go!</title>
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
-
-    <!-- ionic/angularjs js -->
+    <link rel="stylesheet" href="lib/ionic/css/ionic.css">
+    
+	<link rel="stylesheet" href="lib/jquery/css/jquery.mobile-1.4.5.min.css">
+	
+	<link rel="stylesheet" href="css/bb.css">
+    
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-
-    <!-- cordova script (this will be a 404 during development) -->
+    
+	<script src="lib/jquery/js/jquery-1.11.3.min.js"></script>
+	<script src="lib/jquery/js/jquery.mobile-1.4.5.min.js"></script>
+	
+	<script src="js/data.js"></script>
+	
+	<script src="lib/ionic/js/ionic.bundle.js"></script>  
+	<script src="lib/ngCordova/js/ng-cordova.min.js"></script>  
     <script src="cordova.js"></script>
-
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-  </head>
-  <body ng-app="starter">
-
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
-      </ion-header-bar>
-      <ion-content>
-      </ion-content>
-    </ion-pane>
-  </body>
+	<script src="js/bb.js"></script>
+	<script src="js/app.js"></script>
+</head>
+<body ng-app="app" class="platform-ios">
+	<ion-content ng-controller="SoundController"></ion-content>
+	<div id="field"></div>
+	<div id="my-click"></div>
+	<div id="runner0" class="batter">B</div>
+	<div id="runner1" class="runner">1</div>
+	<div id="runner2" class="runner">2</div>
+	<div id="runner3" class="runner">3</div>
+	<div id="fielder1" class="fielder">P</div>
+	<div id="fielder2" class="fielder">C</div>
+	<div id="fielder3" class="fielder">1B</div>
+	<div id="fielder4" class="fielder">2B</div>
+	<div id="fielder5" class="fielder">3B</div>
+	<div id="fielder6" class="fielder">SS</div>
+	<div id="fielder7" class="fielder">RF</div>
+	<div id="fielder8" class="fielder">CF</div>
+	<div id="fielder9" class="fielder">LF</div>
+	<div id="ball" class="ball"></div>
+	</div>
+	<div id="pee-msg"></div>
+	<select id="my-position">
+		<option value="0">My Position...</option>
+		<option value="0">Spectator</option>
+		<option value="1">Pitcher</option>
+		<option value="2">Catcher</option>
+		<option value="3">First Base</option>
+		<option value="4">Second Base</option>
+		<option value="5">Third Base</option>
+		<option value="6">Shortstop</option>
+		<option value="7">Right Field</option>
+		<option value="8">Center Field</option>
+		<option value="9">Left Field</option>
+	</select>
+	<select id="runners-on" onchange="runners();">
+		<option value="0">Runners...</option>
+		<option value="0">No One On Base</option>
+		<option value="1">Runner On First</option>
+		<option value="12">Runners On 1st & 2nd</option>
+		<option value="123">Bases Loaded</option>
+		<option value="2">Runner On Second</option>
+		<option value="3">Runner On Third</option>
+		<option value="13">Runners On 1st & 3rd</option>
+		<option value="23">Runners On 2nd & 3rd</option>
+	</select>
+	<select id="hit" onchange="whereToGo();">
+		<option value="0">Hit To...</option>
+		<option value="1">Pitcher</option>
+		<option value="2">Catcher</option>
+		<option value="3">First Base</option>
+		<option value="4">Second Base</option>
+		<option value="5">Third Base</option>
+		<option value="6">Shortstop</option>
+		<option value="7">Right Field</option>
+		<option value="RC">Right-Center Field</option>
+		<option value="8">Center Field</option>
+		<option value="LC">Left-Center Field</option>
+		<option value="9">Left Field</option>
+	</select>
+	<button id="audio-button" class="mute-audio" data-role="button" data-icon="audio" data-iconpos="notext" onclick="toggleAudio();">Audio</button>
+	<div id="right-wrong">0 : 0</div>
+	<div id="click-msg"></div>
+	<div id="click-capture"></div>
+</body>
 </html>

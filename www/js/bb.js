@@ -67,6 +67,7 @@ function clickMsg(){
 	var fielder = FIELDERS[$('#my-position').val()].name, action = isMobile() ? 'Tap' : 'Click';
 	$('#click-msg').html(action + ' where the ' + fielder + ' should go...').fadeIn();
 };
+
 function whereToGo(){
 	var hitId = $('#hit').val();
 	if ($('#my-position').val() > 0 && hitId != '0'){
@@ -105,7 +106,7 @@ function checkMyPosition(out){
 			rightWrong = $('#right-wrong').html().split(':'),
 			right = rightWrong[0] * 1,
 			wrong = rightWrong[1] * 1;
-		showRightWrong();
+		$('#right-wrong').show();
 		if (closeEnough(left, top)){
 			$('#my-click').addClass('right');
 			if (out){
@@ -125,41 +126,10 @@ function checkMyPosition(out){
 	}
 };
 
-function playAudio(type){
-	if ($('#audio-button').hasClass('mute')){
-		var audios = $('#audio .' + type), i = AUDIO[type], audio = audios.get(i);
-		if (audio){
-			if (!$(audio).data('started') || audio.ended){
-				$(audio).data('started', true);
-				audio.play();
-				i++;
-				AUDIO[type] = i >= audios.length ? 0 : i; 
-			}
-		}
-	}
-};
-
 function toggleAudio(){
-	var btn = $('#audio-button'), muted = !btn.hasClass('mute'), date = new Date();
-	if (muted){
-		btn.addClass('mute');
-		date.setDate(date.getDate() - 365);
-	}else{
-		btn.removeClass('mute');
-		date.setDate(date.getDate() + 365);
-	}
-	document.cookie = "mute=1;expires=" + date.toUTCString();
-	$.each($('#audio audio'), function(_, audio){
-		audio.muted = !muted;
-	});
-};
-
-function showRightWrong(){
-	if ($('#my-position').val() > 0){
-		$('#right-wrong').show();
-	}else{
-		$('#right-wrong').hide();
-	}	
+	var btn = $('#audio-button'), currentlyMuted = !btn.hasClass('mute-audio');
+	btn[currentlyMuted ? 'addClass' : 'removeClass']('mute-audio');
+	audioVolume(currentlyMuted ? 1 : 0);
 };
 
 function runners(){
@@ -192,6 +162,7 @@ function iGottaPee(){
 			position = fielder.position();
 		peeMsg.css({left: position.left + 'px', top: position.top + 'px'});
 		peeMsg.fadeIn(function(){
+			playAudio('pee');
 			setTimeout(function(){
 				playAudio('bad');
 				var dugout = scale({left: $(window).width() + 500, top: 1000});
@@ -219,7 +190,6 @@ function setUpFielders(fast){
 		
 		$('#hit-button').one('click', setUpFielders);
 		playAudio('good');
-		showRightWrong();
 		$('#my-click').fadeOut();
 		$('#hit').val('0').selectmenu('refresh');
 		$('#ball').animate(scale({left: 500, top: 530}), 100);
@@ -246,26 +216,24 @@ function setUpFielders(fast){
 };
 
 function scale(position){
-	if (position && $(window).width() < 1000){
-		var x = $(window).width() / 1001,
-			y = $(window).height() / 872,
-			fieldScale = x > y ? x : y,
-			fielderScale = x < y ? x : y;
-		if (position.left || position.top){
-			var scaled = {};
-			if (position.left){
-				scaled.left = position.left * fielderScale;
-			}
-			if (position.top){
-				scaled.top = position.top * fielderScale;
-			}
-			return scaled;
-		}else{
-			$('#field').css({'background-size': 1000 * fielderScale + 'px'});
-			fieldersSet = false;
-			setUpFielders(true);
-		}	
-	}
+	var x = $(window).width() / 1001,
+		y = $(window).height() / 872,
+		fieldScale = x > y ? x : y,
+		fielderScale = x < y ? x : y;
+	if (position.left || position.top){
+		var scaled = {};
+		if (position.left){
+			scaled.left = position.left * fielderScale;
+		}
+		if (position.top){
+			scaled.top = position.top * fielderScale;
+		}
+		return scaled;
+	}else{
+		$('#field').css({'background-size': 1000 * fielderScale + 'px'});
+		fieldersSet = false;
+		if (appLoaded) setUpFielders(true);
+	}	
 	return position;
 };
 
@@ -274,22 +242,9 @@ function isMobile(){
 	return navigator.userAgent.match(/(iPad|iPhone|iPod|iOS|Android)/g) != null;	
 };
 
+var appLoaded = false;
 var fieldersSet = false;
 var playInProgress = false;
 var peeTime = new Date().getTime() + (60000 * 5);
 
 $(window).resize(scale);
-$(document).ready(function(){
-	scale({});
-	setTimeout(function(){
-		setUpFielders();
-		$('#intro').fadeOut(function(){
-			$(document).click(setUpFielders);
-		});
-	}, 3000);
-	$.each(document.cookie.split(";"), function(_, c){
-		if (c.substr(0, 6) == "mute=1"){
-			toggleAudio();
-		}
-	});
-});

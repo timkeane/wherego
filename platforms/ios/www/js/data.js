@@ -1208,5 +1208,12 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 	}
 };
 
+var SOUNDS = {
+	hit: {medias: [], sources: ['mp3/hit.mp3'], next: 0},
+	good: {medias: [], sources: ['mp3/cheer.mp3', 'mp3/organ.mp3'], next: 0},
+	bad: {medias: [], sources: ['mp3/boo.mp3'], next: 0},
+	safe: {medias: [], sources: ['mp3/safe.mp3'], next: 0},
+	out: {medias: [], sources: ['mp3/out.mp3'], next: 0},
+	pee: {medias: [], sources: ['mp3/pee.mp3'], next: 0}
+};
 var ANIMATION_DURATION = 1500;
-var AUDIO = {good: 0, bad: 0, hit: 0, safe: 0, out: 0};
