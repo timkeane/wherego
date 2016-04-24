@@ -20,10 +20,9 @@ var controller = angular.module('app', ['ionic', 'ngCordova'])
 		scale({});
         navigator.splashscreen.hide();
 		setTimeout(function(){
-			appLoaded = true;
 			setUpFielders();
 			$(document).click(setUpFielders);
-		}, 4000);
+		}, 2000);
 	});
 });
 

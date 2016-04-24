@@ -99,6 +99,8 @@ span.ui-icon-loading {
     bottom: 20px;
 }
 #ball {
+	top: 2000px;
+	bottom: 500px;
 	width: 32px;
 	height: 32px;
 	margin: -15px 0 0 -14px;

@@ -184,6 +184,10 @@ function iGottaPee(){
 };
 
 function setUpFielders(fast){
+	if (!appLoaded){
+		appLoaded = true;
+		playAudio('play');
+	}
 	if (!fieldersSet && !playInProgress){
 		
 		var duration = fast === true ? 100 : ANIMATION_DURATION;
@@ -192,7 +196,7 @@ function setUpFielders(fast){
 		playAudio('good');
 		$('#my-click').fadeOut();
 		$('#hit').val('0').selectmenu('refresh');
-		$('#ball').animate(scale({left: 500, top: 530}), 100).show();
+		$('#ball').show().animate(scale({left: 500, top: 530}), 1000);
 		$('.fielding').removeClass('fielding');
 		$('#click-capture').show();
 		$('select').selectmenu('disable');
@@ -239,7 +243,9 @@ function scale(position){
 			top: offsetTop + 'px'
 		});
 		fieldersSet = false;
-		if (appLoaded) setUpFielders(true);
+		if (appLoaded){
+			setUpFielders(true);
+		}
 	}	
 	return position;
 };

@@ -1209,6 +1209,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 };
 
 var SOUNDS = {
+	play: {medias: [], sources: ['mp3/play.mp3'], next: 0},
 	hit: {medias: [], sources: ['mp3/hit.mp3'], next: 0},
 	good: {medias: [], sources: ['mp3/cheer.mp3', 'mp3/organ.mp3'], next: 0},
 	bad: {medias: [], sources: ['mp3/boo.mp3'], next: 0},

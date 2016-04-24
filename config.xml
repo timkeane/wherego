@@ -48,7 +48,7 @@
     <splash src="resources/ios/splash/Default~iphone.png" width="320" height="480"/>
     <preference name="Orientation" value="all" />
 	<preference name="ShowSplashScreenSpinner" value="false" />
-	<preference name="deployment-target" value="7.1.2" />
+	<preference name="deployment-target" value="7.0" />
   </platform>
   <platform name="android">
     <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>
