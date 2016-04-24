@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>HelloCordova</name>
+  <name>KnowWhereToGo</name>
   <description>
-        An Ionic Framework and Cordova project.
-    </description>
-  <author email="you@example.com" href="http://example.com.com/">
-      Your Name Here
+        A game for little leaguers to learn where to go on basic baseball plys.
+  </description>
+  <author email="t.d.keane@gmail.com" href="http://www.spatial.codes/">
+      Tim Keane
     </author>
   <content src="index.html"/>
   <access origin="*"/>
@@ -47,6 +47,7 @@
     <splash src="resources/ios/splash/Default@2x~iphone.png" width="640" height="960"/>
     <splash src="resources/ios/splash/Default~iphone.png" width="320" height="480"/>
     <preference name="Orientation" value="all" />
+	<preference name="deployment-target" value="7.1.2" />
   </platform>
   <platform name="android">
     <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>

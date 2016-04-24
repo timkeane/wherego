@@ -220,8 +220,9 @@ function scale(position){
 		y = $(window).height() / 872,
 		fieldScale = x > y ? x : y,
 		fielderScale = x < y ? x : y;
-	if (position.left || position.top){
+	if (position && (position.left || position.top)){
 		var scaled = {};
+		position.top = position.top ? position.top + offsetTop : offsetTop;
 		if (position.left){
 			scaled.left = position.left * fielderScale;
 		}
@@ -230,7 +231,10 @@ function scale(position){
 		}
 		return scaled;
 	}else{
-		$('#field').css({'background-size': 1000 * fielderScale + 'px'});
+		$('#field').css({
+			'background-size': 1000 * fielderScale + 'px',
+			top: offsetTop + 'px'
+		});
 		fieldersSet = false;
 		if (appLoaded) setUpFielders(true);
 	}	
@@ -242,6 +246,7 @@ function isMobile(){
 	return navigator.userAgent.match(/(iPad|iPhone|iPod|iOS|Android)/g) != null;	
 };
 
+var offsetTop = 20;
 var appLoaded = false;
 var fieldersSet = false;
 var playInProgress = false;

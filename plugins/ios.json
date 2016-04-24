@@ -7,7 +7,10 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-screen-orientation": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ionicframework.starter"
+        },
+        "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.starter"
         },
         "cordova-plugin-media": {
@@ -16,7 +19,16 @@
         "cordova-plugin-nativeaudio": {
             "PACKAGE_NAME": "com.ionicframework.starter"
         },
+        "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "com.ionicframework.starter"
+        },
         "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ionicframework.starter"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ionicframework.starter"
+        },
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.starter"
         }
     },
