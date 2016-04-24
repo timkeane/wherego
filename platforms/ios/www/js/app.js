@@ -37,13 +37,9 @@ function audioVolume(mute){
 };
 
 function playAudio(type){
-	console.warn(type);
 	var soundType = SOUNDS[type];
-	console.info(1);
 	if (soundType.medias.length){
-		console.info(2);
 		soundType.medias[soundType.next].play();
-		console.info(3);
 		soundType.next = soundType.next + 1;
 		if (soundType.next == soundType.sources.length){
 			soundType.next = 0;
