@@ -192,7 +192,7 @@ function setUpFielders(fast){
 		playAudio('good');
 		$('#my-click').fadeOut();
 		$('#hit').val('0').selectmenu('refresh');
-		$('#ball').animate(scale({left: 500, top: 530}), 100);
+		$('#ball').animate(scale({left: 500, top: 530}), 100).show();
 		$('.fielding').removeClass('fielding');
 		$('#click-capture').show();
 		$('select').selectmenu('disable');
@@ -222,7 +222,10 @@ function scale(position){
 		fielderScale = x < y ? x : y;
 	if (position && (position.left || position.top)){
 		var scaled = {};
-		position.top = position.top ? position.top + offsetTop : offsetTop;
+		if (!position.offsetTop){
+			position.top = position.top ? (offsetTop + position.top) : offsetTop;
+			position.offsetTop = offsetTop;
+		}
 		if (position.left){
 			scaled.left = position.left * fielderScale;
 		}

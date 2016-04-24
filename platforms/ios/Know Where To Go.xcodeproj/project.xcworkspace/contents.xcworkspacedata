@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:KnowWhereToGo.xcodeproj">
+      location = "self:Know Where To Go.xcodeproj">
    </FileRef>
 </Workspace>

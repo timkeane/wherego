@@ -17,7 +17,7 @@
  under the License.
  */
 //
-// Prefix header for all source files of the 'KnowWhereToGo' target in the 'KnowWhereToGo' project
+// Prefix header for all source files of the 'Know Where To Go' target in the 'Know Where To Go' project
 //
 
 #ifdef __OBJC__

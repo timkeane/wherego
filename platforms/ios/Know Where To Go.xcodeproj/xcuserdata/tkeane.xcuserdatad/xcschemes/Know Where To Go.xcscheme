@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-               BuildableName = "KnowWhereToGo.app"
-               BlueprintName = "KnowWhereToGo"
-               ReferencedContainer = "container:KnowWhereToGo.xcodeproj">
+               BuildableName = "Know Where To Go.app"
+               BlueprintName = "Know Where To Go"
+               ReferencedContainer = "container:Know Where To Go.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "KnowWhereToGo.app"
-            BlueprintName = "KnowWhereToGo"
-            ReferencedContainer = "container:KnowWhereToGo.xcodeproj">
+            BuildableName = "Know Where To Go.app"
+            BlueprintName = "Know Where To Go"
+            ReferencedContainer = "container:Know Where To Go.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "KnowWhereToGo.app"
-            BlueprintName = "KnowWhereToGo"
-            ReferencedContainer = "container:KnowWhereToGo.xcodeproj">
+            BuildableName = "Know Where To Go.app"
+            BlueprintName = "Know Where To Go"
+            ReferencedContainer = "container:Know Where To Go.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "KnowWhereToGo.app"
-            BlueprintName = "KnowWhereToGo"
-            ReferencedContainer = "container:KnowWhereToGo.xcodeproj">
+            BuildableName = "Know Where To Go.app"
+            BlueprintName = "Know Where To Go"
+            ReferencedContainer = "container:Know Where To Go.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

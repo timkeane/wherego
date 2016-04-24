@@ -5,16 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>FECADBAF-B08A-4CA1-A64F-7D7B7DECA759</string>
+	<string>2C2A2B80-103D-4053-B00A-36FCB2976C57</string>
 	<key>IDESourceControlProjectName</key>
-	<string>KnowWhereToGo</string>
+	<string>Know Where To Go</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>6B34BB6F80D7C0E8BEDB34081552A57BA707E021</key>
 		<string>https://github.com/timkeane/wherego.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>platforms/ios/KnowWhereToGo.xcodeproj</string>
+	<string>platforms/ios/Know Where To Go.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>6B34BB6F80D7C0E8BEDB34081552A57BA707E021</key>
