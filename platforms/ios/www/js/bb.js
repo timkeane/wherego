@@ -165,10 +165,10 @@ function iGottaPee(){
 			playAudio('pee');
 			setTimeout(function(){
 				playAudio('bad');
-				var dugout = scale({left: $(window).width() + 500, top: 1000});
+				var dugout = scale({left: $(window).width() * 5, top: $(window).height() * 5});
 				$(function(){
-					peeMsg.animate(dugout, ANIMATION_DURATION * 0.67);
-					fielder.animate(dugout, ANIMATION_DURATION * 0.67, 
+					peeMsg.animate(dugout, ANIMATION_DURATION);
+					fielder.animate(dugout, ANIMATION_DURATION, 
 						function(){
 							setTimeout(setUpFielders, 3000);
 						}
@@ -226,15 +226,13 @@ function scale(position){
 		fielderScale = x < y ? x : y;
 	if (position && (position.left || position.top)){
 		var scaled = {};
-		if (!position.offsetTop){
-			position.top = position.top ? (offsetTop + position.top) : offsetTop;
-			position.offsetTop = offsetTop;
-		}
 		if (position.left){
 			scaled.left = position.left * fielderScale;
 		}
 		if (position.top){
-			scaled.top = position.top * fielderScale;
+			scaled.top = position.top * fielderScale + offsetTop;
+		}else{
+			scaled.top = offsetTop;
 		}
 		return scaled;
 	}else{
