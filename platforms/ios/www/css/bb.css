@@ -169,7 +169,7 @@ span.ui-icon-loading {
 	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3Asvg%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214.018px%22%20height%3D%2214px%22%3E%3Cpath%20d%3D%22M%201%2C4%20C%200.447%2C4%200%2C4.447%200%2C5%20l%200%2C4%20c%200%2C0.553%200.447%2C1%201%2C1%20L%202%2C10%206%2C14%206%2C0%202%2C4%20Z%22%20style%3D%22fill%3A%23ffffff%22%2F%3E%3Cg%20transform%3D%22translate(-0.2251606%2C0.26694887)%22%3E%3Crect%20transform%3D%22matrix(0.70710678%2C0.70710678%2C-0.70710678%2C0.70710678%2C0%2C0)%22%20y%3D%22-6.8104491%22%20x%3D%2211.332421%22%20height%3D%228%22%20width%3D%222%22%20style%3D%22fill%3A%23ffffff%22%2F%3E%3Crect%20transform%3D%22matrix(0.70710678%2C-0.70710678%2C0.70710678%2C0.70710678%2C0%2C0)%22%20y%3D%228.3324213%22%20x%3D%221.810449%22%20height%3D%228%22%20width%3D%222%22%20style%3D%22fill%3A%23ffffff%22%20%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
 }
 
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 	#ball{
 		width: 19px;
 		height: 19px;
@@ -205,8 +205,77 @@ span.ui-icon-loading {
 	#my-click.wrong {
 		background-size: 30px;
 	}
+	#right-wrong {
+		font-size: 24px;
+	}
+	#click-msg, .ui-select .ui-btn {
+		width: 130px;
+		font-size: 12px;
+	}
+	#click-msg {
+		bottom: 140px;
+	}
+	#my-position-button {
+		bottom: 100px;
+	}
+	#runners-on-button {
+		bottom: 60px;
+	}
+}
+@media only screen and (min-device-width : 375px) and (max-device-width: 667px) {
+	#ball{
+		width: 19px;
+		height: 19px;
+		background-size: 19px;
+		margin: -8.5px 0 0 -8.5px;
+	}
+	.fielder, .batter, .runner {
+		font-size: 12px;
+	}
+	.fielder {
+		width: 25px;
+		height: 25px;
+		padding: 3px 0 0 0;
+		margin: -12px 0 0 -11px;
+		border-radius: 20px;
+	}
+	.batter, .runner {
+		width: 18px;
+		height: 18px;
+		padding: 0;
+		margin: -9px 0 0 -8px;
+	}
+	#my-click {
+		width: 40px;
+		height: 40px;
+		margin: -20px 0 0 -20px;
+		border-width: 2px;
+		border-radius: 20px;
+	}
+	#my-click.right {
+		background-color: #00ff00;
+	}
+	#my-click.wrong {
+		background-size: 30px;
+	}
+	#click-msg, .ui-select .ui-btn {
+		width: 230px;
+	}
+	.ui-select .ui-btn {
+		font-size: 16px;
+	}
+	#right-wrong, #click-msg {
+		font-size: 24px;
+	}
 	#click-msg {
 		font-size: 24px;
 		bottom: 170px;
 	}
+	#my-position-button {
+		bottom: 120px;
+	}
+	#runners-on-button {
+		bottom: 70px;
+	}
 }
+
