@@ -89,25 +89,23 @@ function whereToGo(){
 	}
 };
 
-function closeEnough(left, top){
-	if ($(window).width() > 600){
-		return left < 60 && top < 60;
-	}
-	return left < 20 && top < 20;
+function closeEnough(myPosition){
+	var actual = $('#my-click').position(),
+		expected = $('#fielder' + myPosition).position(),
+		left = Math.abs(actual.left - expected.left),
+		top = Math.abs(actual.top - expected.top),
+		width = $('#my-click').width() * 0.55;
+	return left < width && top < width;
 };
 
 function checkMyPosition(out){
 	var myPosition = $('#my-position').val();
 	if (myPosition > 0){
-		var actual = $('#my-click').position(),
-			expected = $('#fielder' + myPosition).position(),
-			left = Math.abs(actual.left - expected.left),
-			top = Math.abs(actual.top - expected.top),
-			rightWrong = $('#right-wrong').html().split(':'),
+		var rightWrong = $('#right-wrong').html().split(':'),
 			right = rightWrong[0] * 1,
 			wrong = rightWrong[1] * 1;
 		$('#right-wrong').show();
-		if (closeEnough(left, top)){
+		if (closeEnough(myPosition)){
 			$('#my-click').addClass('right');
 			if (out){
 				playAudio('out');
