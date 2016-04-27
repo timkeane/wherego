@@ -37,12 +37,16 @@ function audioVolume(mute){
 };
 
 function playAudio(type){
-	var soundType = SOUNDS[type];
-	if (soundType.medias.length){
-		soundType.medias[soundType.next].play();
-		soundType.next = soundType.next + 1;
-		if (soundType.next == soundType.sources.length){
-			soundType.next = 0;
-		}
+	try{
+		var soundType = SOUNDS[type];
+		if (soundType.medias.length){
+			soundType.medias[soundType.next].play();
+			soundType.next = soundType.next + 1;
+			if (soundType.next == soundType.sources.length){
+				soundType.next = 0;
+			}
+		}		
+	}catch(error){
+		console.error(error);
 	}
 };

@@ -1,6 +1,6 @@
 function hitTo(hitId){
 	if (!playInProgress){
-		var play = FIELDER_LOCATION_BY_RUNNERS_BY_HIT[$('#runners-on').val()][hitId];
+		var play = PROPER_FIELDER_POSITONS[$('#runners-on').val()][hitId];
 		fieldersSet = false;
 		playInProgress = true;
 		$('#click-capture').show();

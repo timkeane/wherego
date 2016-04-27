@@ -31,7 +31,7 @@ var HIT_LOCATIONS = {
 	9: FIELDERS[9].position
 };
 
-var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
+var PROPER_FIELDER_POSITONS = {
 	0: {
 		1: {
 			throwsToMake: [3],

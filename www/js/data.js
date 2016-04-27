@@ -17,6 +17,59 @@ var FIELDERS = {
 	9: {position: {left: 220, top: 250}, name: 'Left Fielder'}
 };
 
+var BACKUP_POSITIONS = { /* fielder : backs-up-fielder */
+	1: {
+		2: {left: 500, top: 750}
+	},
+	2: {
+		3: {left: 685, top: 575}
+	},
+	7: {
+		3: {left: 800, top: 450}
+	},
+	9: {
+		5: {left: 200, top: 450}
+	}
+};
+
+var CUTOFF_POSITIONS = { /* hit-to : cutoff-fielder : throw-to-base */
+	7:{
+		4: {
+			2: {left: 650, top: 280},
+			3: {left: 650, top: 320},
+			H: {left: 700, top: 380}
+		}
+	},
+	RC:{
+		4: {
+			2: {left: 580, top: 240},
+			3: {left: 550, top: 240},
+			H: {left: 600, top: 320}
+		}
+	},
+	8: {
+		6: {
+			2: {left: 500, top: 220},
+			3: {left: 420, top: 280},
+			H: {left: 500, top: 250}
+		}
+	},
+	LC: {
+		6: {
+			2: {left: 420, top: 240},
+			3: {left: 330, top: 300},
+			H: {left: 400, top: 320}
+		}
+	},
+	9: {
+		6: {
+			9: {left: 380, top: 80},
+			3: {left: 260, top: 360},
+			H: {left: 300, top: 380}
+		}
+	}
+};
+
 var HIT_LOCATIONS = {
 	1: FIELDERS[1].position,
 	2: {left: 500, top: 600},
@@ -31,18 +84,18 @@ var HIT_LOCATIONS = {
 	9: FIELDERS[9].position
 };
 
-var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
+var PROPER_FIELDER_POSITONS = { /* runners-on : hit-to : fielder-position */
 	0: {
 		1: {
 			throwsToMake: [3],
 			out: true,
 			1: {fielding: true},
-			2: {position: {left: 685, top: 575}},
+			2: {position: BACKUP_POSITIONS[2][3]},
 			3: {position: BASES[1], fielding: true},
 			4: {position: {left: 560, top: 420}},
 			5: {position: {left: 440, top: 420}},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 500, top: 120}},
 			9: {}
 		},
@@ -55,7 +108,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: {left: 695, top: 340}},
 			5: {position: {left: 400, top: 485}},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {},
 			9: {}
 		},
@@ -63,12 +116,12 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			throwsToMake: [1],
 			out: true,
 			1: {position: BASES[1], fielding: true},
-			2: {position: {left: 685, top: 575}},
+			2: {position: BACKUP_POSITIONS[2][3]},
 			3: {fielding: true},
 			4: {position: {left: 695, top: 340}},
 			5: {},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {},
 			9: {}
 		},
@@ -76,12 +129,12 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			throwsToMake: [3],
 			out: true,
 			1: {},
-			2: {position: {left: 685, top: 575}},
+			2: {position: BACKUP_POSITIONS[2][3]},
 			3: {position: BASES[1], fielding: true},
 			4: {fielding: true},
 			5: {},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 625, top: 170}},
 			9: {position: {left: 300, top: 170}}		
 		},
@@ -89,12 +142,12 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			throwsToMake: [3],
 			out: true,
 			1: {},
-			2: {position: {left: 685, top: 575}},
+			2: {position: BACKUP_POSITIONS[2][3]},
 			3: {position: BASES[1], fielding: true},
 			4: {position: BASES[2]},
 			5: {fielding: true},
 			6: {position: {left: 320, top: 300}},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 485, top: 150}},
 			9: {position: {left: 200, top: 300}}
 		},
@@ -102,12 +155,12 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			throwsToMake: [3],
 			out: true,
 			1: {},
-			2: {position: {left: 685, top: 575}},
+			2: {position: BACKUP_POSITIONS[2][3]},
 			3: {position: BASES[1], fielding: true},
 			4: {position: BASES[2]},
 			5: {position: {left: 340, top: 280}},
 			6: {fielding: true},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 485, top: 150}},
 			9: {position: {left: 300, top: 170}}		
 		},
@@ -116,7 +169,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			1: {},
 			2: {position: BASES.H},
 			3: {position: BASES[1]},
-			4: {position: {left: 650, top: 280}, fielding: true},
+			4: {position: CUTOFF_POSITIONS[7][4][2], fielding: true},
 			5: {position: BASES[3]},
 			6: {position: BASES[2], fielding: true},
 			7: {fielding: true},
@@ -128,7 +181,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			1: {},
 			2: {position: BASES.H},
 			3: {position: BASES[1]},
-			4: {position: {left: 580, top: 240}, fielding: true},
+			4: {position: CUTOFF_POSITIONS.RC[4][2], fielding: true},
 			5: {position: BASES[3]},
 			6: {position: BASES[2], fielding: true},
 			7: {position: {left: 700, top: 100}},
@@ -142,10 +195,10 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			3: {position: BASES[1]},
 			4: {position: BASES[2], fielding: true},
 			5: {position: BASES[3]},
-			6: {position: {left: 500, top: 220}, fielding: true},
+			6: {position: CUTOFF_POSITIONS[8][6][2], fielding: true},
 			7: {position: {left: 620, top: 80}},
 			8: {fielding: true},
-			9: {position: {left: 380, top: 80}}
+			9: {position: CUTOFF_POSITIONS[9][6][2]}
 		},
 		LC: {
 			throwsToMake: [6, 4],
@@ -154,7 +207,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			3: {position: BASES[1]},
 			4: {position: BASES[2], fielding: true},
 			5: {position: BASES[3]},
-			6: {position: {left: 420, top: 240}, fielding: true},
+			6: {position: CUTOFF_POSITIONS.LC[6][2], fielding: true},
 			7: {position: {left: 700, top: 300}},
 			8: {position: HIT_LOCATIONS.LC, fielding: true},
 			9: {position: {left: 300, top: 100}}
@@ -178,12 +231,12 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			advance: [1],
 			out: true,
 			1: {fielding: true},
-			2: {position: {left: 685, top: 575}},
+			2: {position: BACKUP_POSITIONS[2][3]},
 			3: {position: BASES[1], fielding: true},
 			4: {position: {left: 560, top: 420}},
 			5: {position: {left: 440, top: 420}},
 			6: {position: BASES[2], fielding: true},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 500, top: 150}},
 			9: {position: {left: 350, top: 240}}
 		},
@@ -197,7 +250,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: {left: 695, top: 340}},
 			5: {position: BASES[3]},
 			6: {position: BASES[2], fielding: true},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 500, top: 150}},
 			9: {position: {left: 350, top: 240}}
 		},
@@ -206,12 +259,12 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			advance: [1],
 			out: true,
 			1: {position: BASES[1], fielding: true},
-			2: {position: {left: 685, top: 575}},
+			2: {position: BACKUP_POSITIONS[2][3]},
 			3: {fielding: true},
 			4: {position: {left: 695, top: 340}},
 			5: {position: BASES[3]},
 			6: {position: BASES[2], fielding: true},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 500, top: 150}},
 			9: {position: {left: 350, top: 240}}
 		},
@@ -220,12 +273,12 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			advance: [1],
 			out: true,
 			1: {},
-			2: {position: {left: 685, top: 575}},
+			2: {position: BACKUP_POSITIONS[2][3]},
 			3: {position: BASES[1], fielding: true},
 			4: {fielding: true},
 			5: {position: BASES[3]},
 			6: {position: BASES[2], fielding: true},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 625, top: 170}},
 			9: {position: {left: 350, top: 240}}
 		},
@@ -234,7 +287,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			advance: [1],
 			out: true,
 			1: {},
-			2: {position: {left: 685, top: 575}},
+			2: {position: BACKUP_POSITIONS[2][3]},
 			3: {position: BASES[1], fielding: true},
 			4: {position: BASES[2], fielding: true},
 			5: {fielding: true},
@@ -247,7 +300,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			throwsToMake: [4, 3],
 			advance: [1],
 			1: {},
-			2: {position: {left: 685, top: 575}},
+			2: {position: BACKUP_POSITIONS[2][3]},
 			3: {position: BASES[1], fielding: true},
 			4: {position: BASES[2], fielding: true},
 			5: {position: {left: 340, top: 280}},
@@ -262,7 +315,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			1: {},
 			2: {position: BASES.H},
 			3: {position: BASES[1]},
-			4: {position: {left: 650, top: 320}, fielding: true},
+			4: {position: CUTOFF_POSITIONS[7][4][3], fielding: true},
 			5: {position: BASES[3], fielding: true},
 			6: {position: BASES[2]},
 			7: {fielding: true},
@@ -275,12 +328,12 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			1: {},
 			2: {position: BASES.H},
 			3: {position: BASES[1]},
-			4: {position: {left: 550, top: 240}, fielding: true},
+			4: {position: CUTOFF_POSITIONS.RC[4][2], fielding: true},
 			5: {position: BASES[3], fielding: true},
 			6: {position: BASES[2]},
 			7: {position: {left: 700, top: 100}},
 			8: {position: HIT_LOCATIONS.RC, fielding: true},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		8: {
 			throwsToMake: [6, 5],
@@ -290,10 +343,10 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			3: {position: BASES[1]},
 			4: {position: BASES[2]},
 			5: {position: BASES[3], fielding: true},
-			6: {position: {left: 420, top: 280}, fielding: true},
+			6: {position: CUTOFF_POSITIONS[8][6][3], fielding: true},
 			7: {position: {left: 620, top: 80}},
 			8: {fielding: true},
-			9: {position: {left: 380, top: 80}}
+			9: {position: CUTOFF_POSITIONS[9][6][2]}
 		},
 		LC: {
 			throwsToMake: [6, 5],
@@ -303,7 +356,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			3: {position: BASES[1]},
 			4: {position: BASES[2]},
 			5: {position: BASES[3], fielding: true},
-			6: {position: {left: 330, top: 300}, fielding: true},
+			6: {position: CUTOFF_POSITIONS.LC[6][3], fielding: true},
 			7: {position: {left: 700, top: 300}},
 			8: {position: HIT_LOCATIONS.LC, fielding: true},
 			9: {position: {left: 300, top: 100}}
@@ -316,7 +369,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			3: {position: BASES[1]},
 			4: {position: BASES[2]},
 			5: {position: BASES[3], fielding: true},
-			6: {position: {left: 260, top: 360}, fielding: true},
+			6: {position: CUTOFF_POSITIONS[9][6][3], fielding: true},
 			7: {position: {left: 700, top: 300}},
 			8: {position: {left: 300, top: 200}},
 			9: {fielding: true}
@@ -333,9 +386,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: {left: 560, top: 420}},
 			5: {position: BASES[3], fielding: true},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 500, top: 150}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		2: {
 			throwsToMake: [5, 3],
@@ -347,9 +400,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: {left: 695, top: 340}},
 			5: {position: BASES[3], fielding: true},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 500, top: 150}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		3: {
 			throwsToMake: [5, 1],
@@ -361,9 +414,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: {left: 695, top: 340}},
 			5: {position: BASES[3], fielding: true},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 500, top: 150}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		4: {
 			throwsToMake: [5, 3],
@@ -375,9 +428,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {fielding: true},
 			5: {position: BASES[3], fielding: true},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 625, top: 170}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		5: {
 			throwsToMake: [4, 3],
@@ -389,7 +442,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: BASES[2], fielding: true},
 			5: {fielding: true},
 			6: {position: {left: 320, top: 300}},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 600, top: 200}},
 			9: {position: {left: 200, top: 250}}
 		},
@@ -402,58 +455,58 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: BASES[2]},
 			5: {position: BASES[3], fielding: true},
 			6: {fielding: true},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 485, top: 150}},
 			9: {position: {left: 300, top: 170}}		
 		},
 		7: {
 			throwsToMake: [4, 2],
 			advance: [1, 2],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
-			4: {position: {left: 700, top: 380}, fielding: true},
+			4: {position: CUTOFF_POSITIONS[7][4].H, fielding: true},
 			5: {position: BASES[3]},
 			6: {position: BASES[2]},
 			7: {fielding: true},
 			8: {position: {left: 750, top: 170}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		RC: {
 			throwsToMake: [4, 2],
 			advance: [1, 2],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
-			4: {position: {left: 600, top: 320}, fielding: true},
+			4: {position: CUTOFF_POSITIONS.RC[4].H, fielding: true},
 			5: {position: BASES[3]},
 			6: {position: BASES[2]},
 			7: {position: {left: 700, top: 100}},
 			8: {position: HIT_LOCATIONS.RC, fielding: true},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		8: {
 			throwsToMake: [6, 2],
 			advance: [1, 2],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
 			4: {position: BASES[2]},
 			5: {position: BASES[3]},
-			6: {position: {left: 500, top: 250}, fielding: true},
+			6: {position: CUTOFF_POSITIONS[8][6].H, fielding: true},
 			7: {position: {left: 620, top: 80}},
 			8: {fielding: true},
-			9: {position: {left: 380, top: 80}}
+			9: {position: CUTOFF_POSITIONS[9][6][2]}
 		},
 		LC: {
 			throwsToMake: [6, 2],
 			advance: [1, 2],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
 			4: {position: BASES[2]},
 			5: {position: BASES[3]},
-			6: {position: {left: 400, top: 320}, fielding: true},
+			6: {position: CUTOFF_POSITIONS.LC[6].H, fielding: true},
 			7: {position: {left: 700, top: 300}},
 			8: {position: HIT_LOCATIONS.LC, fielding: true},
 			9: {position: {left: 300, top: 100}}
@@ -461,12 +514,12 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 		9: {
 			throwsToMake: [6, 2],
 			advance: [1, 2],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
 			4: {position: BASES[2]},
 			5: {position: BASES[3]},
-			6: {position: {left: 300, top: 380}, fielding: true},
+			6: {position: CUTOFF_POSITIONS[9][6].H, fielding: true},
 			7: {position: {left: 700, top: 300}},
 			8: {position: {left: 300, top: 200}},
 			9: {fielding: true}
@@ -483,9 +536,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: {left: 560, top: 420}},
 			5: {position: BASES[3], fielding: true},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 500, top: 150}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		2: {
 			throwsToMake: [5, 3],
@@ -497,9 +550,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: {left: 695, top: 340}},
 			5: {position: BASES[3], fielding: true},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 500, top: 150}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		3: {
 			throwsToMake: [2, 5],
@@ -511,9 +564,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: {left: 695, top: 340}},
 			5: {position: BASES[3], fielding: true},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 500, top: 150}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		4: {
 			throwsToMake: [2, 5],
@@ -525,9 +578,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {fielding: true},
 			5: {position: BASES[3], fielding: true},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 625, top: 170}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		5: {
 			throwsToMake: [2, 3],
@@ -539,7 +592,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: BASES[2]},
 			5: {fielding: true},
 			6: {position: {left: 320, top: 300}},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 600, top: 200}},
 			9: {position: {left: 200, top: 250}}
 		},
@@ -552,14 +605,14 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: BASES[2]},
 			5: {position: BASES[3], fielding: true},
 			6: {fielding: true},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 485, top: 150}},
 			9: {position: {left: 300, top: 170}}		
 		},
 		7: {
 			throwsToMake: [4, 2],
 			advance: [1, 2, 3],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
 			4: {position: {left: 700, top: 380}, fielding: true},
@@ -567,43 +620,43 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			6: {position: BASES[2]},
 			7: {fielding: true},
 			8: {position: {left: 750, top: 170}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		RC: {
 			throwsToMake: [4, 2],
 			advance: [1, 2, 3],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
-			4: {position: {left: 600, top: 320}, fielding: true},
+			4: {position: CUTOFF_POSITIONS.RC[4].H, fielding: true},
 			5: {position: BASES[3]},
 			6: {position: BASES[2]},
 			7: {position: {left: 700, top: 100}},
 			8: {position: HIT_LOCATIONS.RC, fielding: true},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		8: {
 			throwsToMake: [6, 2],
 			advance: [1, 2, 3],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
 			4: {position: BASES[2]},
 			5: {position: BASES[3]},
-			6: {position: {left: 500, top: 250}, fielding: true},
+			6: {position: CUTOFF_POSITIONS[8][6].H, fielding: true},
 			7: {position: {left: 620, top: 80}},
 			8: {fielding: true},
-			9: {position: {left: 380, top: 80}}
+			9: {position: CUTOFF_POSITIONS[9][6][2]}
 		},
 		LC: {
 			throwsToMake: [6, 2],
 			advance: [1, 2, 3],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
 			4: {position: BASES[2]},
 			5: {position: BASES[3]},
-			6: {position: {left: 400, top: 320}, fielding: true},
+			6: {position: CUTOFF_POSITIONS.LC[6].H, fielding: true},
 			7: {position: {left: 700, top: 300}},
 			8: {position: HIT_LOCATIONS.LC, fielding: true},
 			9: {position: {left: 300, top: 100}}
@@ -611,12 +664,12 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 		9: {
 			throwsToMake: [6, 2],
 			advance: [1, 2, 3],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
 			4: {position: BASES[2]},
 			5: {position: BASES[3]},
-			6: {position: {left: 300, top: 380}, fielding: true},
+			6: {position: CUTOFF_POSITIONS[9][6].H, fielding: true},
 			7: {position: {left: 700, top: 300}},
 			8: {position: {left: 300, top: 200}},
 			9: {fielding: true}
@@ -627,14 +680,14 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			throwsToMake: [3],
 			out: true,
 			1: {fielding: true},
-			2: {position: {left: 685, top: 575}},
+			2: {position: BACKUP_POSITIONS[2][3]},
 			3: {position: BASES[1], fielding: true},
 			4: {position: {left: 560, top: 420}},
 			5: {position: BASES[3]},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 500, top: 120}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		2: {
 			throwsToMake: [3],
@@ -645,66 +698,66 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: {left: 695, top: 340}},
 			5: {position: BASES[3]},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 485, top: 120}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		3: {
 			throwsToMake: [1],
 			out: true,
 			1: {position: BASES[1], fielding: true},
-			2: {position: {left: 685, top: 575}},
+			2: {position: BACKUP_POSITIONS[2][3]},
 			3: {fielding: true},
 			4: {position: {left: 695, top: 340}},
 			5: {position: BASES[3]},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		4: {
 			throwsToMake: [3],
 			out: true,
 			1: {},
-			2: {position: {left: 685, top: 575}},
+			2: {position: BACKUP_POSITIONS[2][3]},
 			3: {position: BASES[1], fielding: true},
 			4: {fielding: true},
 			5: {position: BASES[3]},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 625, top: 170}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		5: {
 			throwsToMake: [3],
 			out: true,
 			1: {},
-			2: {position: {left: 685, top: 575}},
+			2: {position: BACKUP_POSITIONS[2][3]},
 			3: {position: BASES[1], fielding: true},
 			4: {position: BASES[2]},
 			5: {fielding: true},
 			6: {position: {left: 320, top: 300}},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 485, top: 150}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		6: {
 			throwsToMake: [3],
 			out: true,
 			1: {},
-			2: {position: {left: 685, top: 575}},
+			2: {position: BACKUP_POSITIONS[2][3]},
 			3: {position: BASES[1], fielding: true},
 			4: {position: BASES[2]},
 			5: {position: BASES[3]},
 			6: {fielding: true},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 485, top: 150}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		7: {
 			throwsToMake: [4, 2],
 			advance: [2],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
 			4: {position: {left: 700, top: 380}, fielding: true},
@@ -712,43 +765,43 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			6: {position: BASES[2]},
 			7: {fielding: true},
 			8: {position: {left: 750, top: 170}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		RC: {
 			throwsToMake: [4, 2],
 			advance: [2],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
-			4: {position: {left: 600, top: 320}, fielding: true},
+			4: {position: CUTOFF_POSITIONS.RC[4].H, fielding: true},
 			5: {position: BASES[3]},
 			6: {position: BASES[2]},
 			7: {position: {left: 700, top: 100}},
 			8: {position: HIT_LOCATIONS.RC, fielding: true},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		8: {
 			throwsToMake: [6, 2],
 			advance: [2],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
 			4: {position: BASES[2]},
 			5: {position: BASES[3]},
-			6: {position: {left: 500, top: 250}, fielding: true},
+			6: {position: CUTOFF_POSITIONS[8][6].H, fielding: true},
 			7: {position: {left: 620, top: 80}},
 			8: {fielding: true},
-			9: {position: {left: 380, top: 80}}
+			9: {position: CUTOFF_POSITIONS[9][6][2]}
 		},
 		LC: {
 			throwsToMake: [6, 2],
 			advance: [2],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
 			4: {position: BASES[2]},
 			5: {position: BASES[3]},
-			6: {position: {left: 400, top: 320}, fielding: true},
+			6: {position: CUTOFF_POSITIONS.LC[6].H, fielding: true},
 			7: {position: {left: 700, top: 300}},
 			8: {position: HIT_LOCATIONS.LC, fielding: true},
 			9: {position: {left: 300, top: 100}}
@@ -756,12 +809,12 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 		9: {
 			throwsToMake: [6, 2],
 			advance: [2],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
 			4: {position: BASES[2]},
 			5: {position: BASES[3]},
-			6: {position: {left: 300, top: 380}, fielding: true},
+			6: {position: CUTOFF_POSITIONS[9][6].H, fielding: true},
 			7: {position: {left: 700, top: 300}},
 			8: {position: {left: 300, top: 200}},
 			9: {fielding: true}
@@ -777,9 +830,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: {left: 560, top: 420}},
 			5: {position: BASES[3]},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 500, top: 120}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		2: {
 			throwsToMake: [3],
@@ -790,9 +843,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: {left: 695, top: 340}},
 			5: {position: BASES[3]},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 485, top: 120}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		3: {
 			throwsToMake: [1],
@@ -803,9 +856,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: {left: 695, top: 340}},
 			5: {position: BASES[3]},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 625, top: 170}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		4: {
 			throwsToMake: [3],
@@ -816,9 +869,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {fielding: true},
 			5: {position: BASES[3]},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 625, top: 170}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		5: {
 			throwsToMake: [3],
@@ -829,9 +882,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: BASES[2]},
 			5: {fielding: true},
 			6: {position: {left: 320, top: 300}},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 485, top: 150}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		6: {
 			throwsToMake: [3],
@@ -842,9 +895,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: BASES[2]},
 			5: {position: BASES[3]},
 			6: {fielding: true},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 485, top: 150}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		7: {
 			throwsToMake: [4, 6],
@@ -852,12 +905,12 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			1: {},
 			2: {position: BASES.H},
 			3: {position: BASES[1]},
-			4: {position: {left: 650, top: 280}, fielding: true},
+			4: {position: CUTOFF_POSITIONS[7][4][2], fielding: true},
 			5: {position: BASES[3]},
 			6: {position: BASES[2], fielding: true},
 			7: {fielding: true},
 			8: {position: {left: 750, top: 170}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		RC: {
 			throwsToMake: [4, 6],
@@ -865,12 +918,12 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			1: {},
 			2: {position: BASES.H},
 			3: {position: BASES[1]},
-			4: {position: {left: 580, top: 240}, fielding: true},
+			4: {position: CUTOFF_POSITIONS.RC[4][2], fielding: true},
 			5: {position: BASES[3]},
 			6: {position: BASES[2], fielding: true},
 			7: {position: {left: 700, top: 100}},
 			8: {position: HIT_LOCATIONS.RC, fielding: true},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		8: {
 			throwsToMake: [6, 4],
@@ -880,10 +933,10 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			3: {position: BASES[1]},
 			4: {position: BASES[2], fielding: true},
 			5: {position: BASES[3]},
-			6: {position: {left: 500, top: 220}, fielding: true},
+			6: {position: CUTOFF_POSITIONS[8][6][2], fielding: true},
 			7: {position: {left: 620, top: 80}},
 			8: {fielding: true},
-			9: {position: {left: 380, top: 80}}
+			9: {position: CUTOFF_POSITIONS[9][6][2]}
 		},
 		LC: {
 			throwsToMake: [6, 4],
@@ -893,7 +946,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			3: {position: BASES[1]},
 			4: {position: BASES[2], fielding: true},
 			5: {position: BASES[3]},
-			6: {position: {left: 420, top: 240}, fielding: true},
+			6: {position: CUTOFF_POSITIONS.LC[6][2], fielding: true},
 			7: {position: {left: 700, top: 300}},
 			8: {position: HIT_LOCATIONS.LC, fielding: true},
 			9: {position: {left: 300, top: 100}}
@@ -923,9 +976,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: {left: 560, top: 420}},
 			5: {position: BASES[3]},
 			6: {position: BASES[2], fielding: true},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 500, top: 150}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		2: {
 			throwsToMake: [6, 3],
@@ -937,9 +990,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: {left: 695, top: 340}},
 			5: {position: BASES[3]},
 			6: {position: BASES[2], fielding: true},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 500, top: 150}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		3: {
 			throwsToMake: [6, 1],
@@ -951,9 +1004,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: {left: 695, top: 340}},
 			5: {position: BASES[3]},
 			6: {position: BASES[2], fielding: true},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 500, top: 150}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		4: {
 			throwsToMake: [6, 3],
@@ -965,9 +1018,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {fielding: true},
 			5: {position: BASES[3]},
 			6: {position: BASES[2], fielding: true},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 625, top: 170}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		5: {
 			throwsToMake: [4, 3],
@@ -979,9 +1032,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: BASES[2], fielding: true},
 			5: {fielding: true},
 			6: {position: {left: 320, top: 300}},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 485, top: 150}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		6: {
 			throwsToMake: [4, 3],
@@ -992,9 +1045,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: BASES[2], fielding: true},
 			5: {position: BASES[3]},
 			6: {fielding: true},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 485, top: 150}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		7: {
 			throwsToMake: [4, 5],
@@ -1002,12 +1055,12 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			1: {},
 			2: {position: BASES.H},
 			3: {position: BASES[1]},
-			4: {position: {left: 650, top: 320}, fielding: true},
+			4: {position: CUTOFF_POSITIONS[7][4][3], fielding: true},
 			5: {position: BASES[3], fielding: true},
 			6: {position: BASES[2]},
 			7: {fielding: true},
 			8: {position: {left: 750, top: 170}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		RC: {
 			throwsToMake: [4, 5],
@@ -1015,12 +1068,12 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			1: {},
 			2: {position: BASES.H},
 			3: {position: BASES[1]},
-			4: {position: {left: 550, top: 240}, fielding: true},
+			4: {position: CUTOFF_POSITIONS.RC[4][2], fielding: true},
 			5: {position: BASES[3], fielding: true},
 			6: {position: BASES[2]},
 			7: {position: {left: 700, top: 100}},
 			8: {position: HIT_LOCATIONS.RC, fielding: true},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		8: {
 			throwsToMake: [6, 5],
@@ -1030,10 +1083,10 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			3: {position: BASES[1]},
 			4: {position: BASES[2]},
 			5: {position: BASES[3], fielding: true},
-			6: {position: {left: 420, top: 280}, fielding: true},
+			6: {position: CUTOFF_POSITIONS[8][6][3], fielding: true},
 			7: {position: {left: 620, top: 80}},
 			8: {fielding: true},
-			9: {position: {left: 380, top: 80}}
+			9: {position: CUTOFF_POSITIONS[9][6][2]}
 		},
 		LC: {
 			throwsToMake: [6, 5],
@@ -1043,7 +1096,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			3: {position: BASES[1]},
 			4: {position: BASES[2]},
 			5: {position: BASES[3], fielding: true},
-			6: {position: {left: 330, top: 300}, fielding: true},
+			6: {position: CUTOFF_POSITIONS.LC[6][3], fielding: true},
 			7: {position: {left: 700, top: 300}},
 			8: {position: HIT_LOCATIONS.LC, fielding: true},
 			9: {position: {left: 300, top: 100}}
@@ -1056,7 +1109,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			3: {position: BASES[1]},
 			4: {position: BASES[2]},
 			5: {position: BASES[3], fielding: true},
-			6: {position: {left: 260, top: 360}, fielding: true},
+			6: {position: CUTOFF_POSITIONS[9][6][3], fielding: true},
 			7: {position: {left: 700, top: 300}},
 			8: {position: {left: 300, top: 200}},
 			9: {fielding: true}
@@ -1072,9 +1125,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: {left: 560, top: 420}},
 			5: {position: BASES[3]},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 500, top: 150}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		2: {
 			throwsToMake: [3],
@@ -1085,9 +1138,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: {left: 695, top: 340}},
 			5: {position: BASES[3]},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 500, top: 150}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		3: {
 			throwsToMake: [1],
@@ -1098,9 +1151,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: {left: 695, top: 340}},
 			5: {position: BASES[3]},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 500, top: 150}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		4: {
 			throwsToMake: [3],
@@ -1111,9 +1164,9 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {fielding: true},
 			5: {position: BASES[3]},
 			6: {position: BASES[2]},
-			7: {position: {left: 800, top: 450}},
+			7: {position: BACKUP_POSITIONS[7][3]},
 			8: {position: {left: 625, top: 170}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		5: {
 			throwsToMake: [3],
@@ -1143,7 +1196,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 		7: {
 			throwsToMake: [4, 2],
 			advance: [2, 3],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
 			4: {position: {left: 700, top: 380}, fielding: true},
@@ -1151,43 +1204,43 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			6: {position: BASES[2]},
 			7: {fielding: true},
 			8: {position: {left: 750, top: 170}},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		RC: {
 			throwsToMake: [4, 2],
 			advance: [2, 3],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
-			4: {position: {left: 600, top: 320}, fielding: true},
+			4: {position: CUTOFF_POSITIONS.RC[4].H, fielding: true},
 			5: {position: BASES[3]},
 			6: {position: BASES[2]},
 			7: {position: {left: 700, top: 100}},
 			8: {position: HIT_LOCATIONS.RC, fielding: true},
-			9: {position: {left: 200, top: 450}}
+			9: {position: BACKUP_POSITIONS[9][5]}
 		},
 		8: {
 			throwsToMake: [6, 2],
 			advance: [2, 3],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
 			4: {position: BASES[2]},
 			5: {position: BASES[3]},
-			6: {position: {left: 500, top: 250}, fielding: true},
+			6: {position: CUTOFF_POSITIONS[8][6].H, fielding: true},
 			7: {position: {left: 620, top: 80}},
 			8: {fielding: true},
-			9: {position: {left: 380, top: 80}}
+			9: {position: CUTOFF_POSITIONS[9][6][2]}
 		},
 		LC: {
 			throwsToMake: [6, 2],
 			advance: [2, 3],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
 			4: {position: BASES[2]},
 			5: {position: BASES[3]},
-			6: {position: {left: 400, top: 320}, fielding: true},
+			6: {position: CUTOFF_POSITIONS.LC[6].H, fielding: true},
 			7: {position: {left: 700, top: 300}},
 			8: {position: HIT_LOCATIONS.LC, fielding: true},
 			9: {position: {left: 300, top: 100}}
@@ -1195,12 +1248,12 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 		9: {
 			throwsToMake: [6, 2],
 			advance: [2, 3],
-			1: {position: {left: 500, top: 750}},
+			1: {position: BACKUP_POSITIONS[1][2]},
 			2: {position: BASES.H, fielding: true},
 			3: {position: BASES[1]},
 			4: {position: BASES[2]},
 			5: {position: BASES[3]},
-			6: {position: {left: 300, top: 380}, fielding: true},
+			6: {position: CUTOFF_POSITIONS[9][6].H, fielding: true},
 			7: {position: {left: 700, top: 300}},
 			8: {position: {left: 300, top: 200}},
 			9: {fielding: true}
