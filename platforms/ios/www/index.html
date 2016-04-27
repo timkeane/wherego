@@ -5,7 +5,7 @@
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 	<title>Know Where To Go!</title>
 	
-	<link rel="stylesheet" href="lib/ionic/css/ionic.css">
+	<link rel="stylesheet" href="lib/ionic/css/ionic.min.css">
 	<link rel="stylesheet" href="lib/jquery/css/jquery.mobile-1.4.5.min.css">	
 	<link rel="stylesheet" href="css/bb.css">
 	   
@@ -22,7 +22,7 @@
 	<script src="js/bb.js"></script>
 	<script src="js/app.js"></script>
 </head>
-<body ng-app="app" class="platform-ios platform-cordova platform-webview">
+<body ng-app="app" class="platform-ios">
 	<ion-content ng-controller="SoundController"></ion-content>
 	<div id="field"></div>
 	<div id="my-click"></div>
@@ -39,7 +39,7 @@
 	<div id="fielder7" class="fielder">RF</div>
 	<div id="fielder8" class="fielder">CF</div>
 	<div id="fielder9" class="fielder">LF</div>
-	<div id="ball"></div>
+	<div id="ball" class="ball"></div>
 	</div>
 	<div id="pee-msg"></div>
 	<select id="my-position">
@@ -84,6 +84,6 @@
 	<div id="right-wrong">0 : 0</div>
 	<div id="click-msg"></div>
 	<div id="click-capture"></div>
-	<div id="splash"><table><tbody><tr><td>Know Where To Go!</td></tr></tbody></table></div>
+	<div id="splash" class="ball"><table><tbody><tr><td>Know Where To Go!</td></tr></tbody></table></div>
 </body>
 </html>

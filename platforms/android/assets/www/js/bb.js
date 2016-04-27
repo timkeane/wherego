@@ -1,6 +1,6 @@
 function hitTo(hitId){
 	if (!playInProgress){
-		var play = PROPER_FIELDER_POSITONS[$('#runners-on').val()][hitId];
+		var play = PROPER_FIELDER_POSITON[$('#runners-on').val()][hitId];
 		fieldersSet = false;
 		playInProgress = true;
 		$('#click-capture').show();
@@ -11,16 +11,16 @@ function hitTo(hitId){
 			}
 		}
 		/* pitch */
-		$('#ball').animate(scale(BASES.H), ANIMATION_DURATION, function(){
+		$('#ball').animate(scale(BASE.H), ANIMATION_DURATION, function(){
 			playAudio('hit');
 			$(function(){
 				/* hit */
-				$('#ball').animate(scale(HIT_LOCATIONS[hitId]), ANIMATION_DURATION);
+				$('#ball').animate(scale(HIT_LOCATION[hitId]), ANIMATION_DURATION);
 				/* run */
-				$('#runner0').animate(scale(BASES[1]), ANIMATION_DURATION * 3);
-				$('#runner1').animate(runTo(1, play, BASES[2]), ANIMATION_DURATION * 3);
-				$('#runner2').animate(runTo(2, play, BASES[3]), ANIMATION_DURATION * 3);
-				$('#runner3').animate(runTo(3, play, BASES.H), ANIMATION_DURATION * 3);
+				$('#runner0').animate(scale(BASE[1]), ANIMATION_DURATION * 3);
+				$('#runner1').animate(runTo(1, play, BASE[2]), ANIMATION_DURATION * 3);
+				$('#runner2').animate(runTo(2, play, BASE[3]), ANIMATION_DURATION * 3);
+				$('#runner3').animate(runTo(3, play, BASE.H), ANIMATION_DURATION * 3);
 				/* field */
 				$('#fielder1').animate(scale(play[1].position), ANIMATION_DURATION);
 				$('#fielder2').animate(scale(play[2].position), ANIMATION_DURATION);
@@ -64,7 +64,7 @@ function makeThrows(play){
 };
 
 function clickMsg(){
-	var fielder = FIELDERS[$('#my-position').val()].name, action = isMobile() ? 'Tap' : 'Click';
+	var fielder = FIELDER[$('#my-position').val()].name, action = isMobile() ? 'Tap' : 'Click';
 	$('#click-msg').html(action + ' where the ' + fielder + ' should go...').fadeIn();
 };
 
@@ -137,7 +137,7 @@ function runners(){
 	$('.runner').hide();
 	if (runners > 0){
 		for (var i = 0; i < runners.length; i++){
-			var base = runners[i], position = scale(BASES[base]);
+			var base = runners[i], position = scale(BASE[base]);
 			$('#runner' + base).css({
 				display: 'block',
 				left: position.left + 'px',
@@ -199,16 +199,16 @@ function setUpFielders(fast){
 
 		$(function(){
 			$('#runner0').css({left: '-500px', top: '500px'});
-			$('#runner0').animate(scale({left: BASES.H.left + 38, top: BASES.H.top}), duration);
-			$('#fielder1').animate(scale(FIELDERS[1].position), duration);
-			$('#fielder2').animate(scale(FIELDERS[2].position), duration);
-			$('#fielder3').animate(scale(FIELDERS[3].position), duration);
-			$('#fielder4').animate(scale(FIELDERS[4].position), duration);
-			$('#fielder5').animate(scale(FIELDERS[5].position), duration);
-			$('#fielder6').animate(scale(FIELDERS[6].position), duration);
-			$('#fielder7').animate(scale(FIELDERS[7].position), duration);
-			$('#fielder8').animate(scale(FIELDERS[8].position), duration);
-			$('#fielder9').animate(scale(FIELDERS[9].position), duration, iGottaPee);
+			$('#runner0').animate(scale({left: BASE.H.left + 38, top: BASE.H.top}), duration);
+			$('#fielder1').animate(scale(FIELDER[1].position), duration);
+			$('#fielder2').animate(scale(FIELDER[2].position), duration);
+			$('#fielder3').animate(scale(FIELDER[3].position), duration);
+			$('#fielder4').animate(scale(FIELDER[4].position), duration);
+			$('#fielder5').animate(scale(FIELDER[5].position), duration);
+			$('#fielder6').animate(scale(FIELDER[6].position), duration);
+			$('#fielder7').animate(scale(FIELDER[7].position), duration);
+			$('#fielder8').animate(scale(FIELDER[8].position), duration);
+			$('#fielder9').animate(scale(FIELDER[9].position), duration, iGottaPee);
 		});
 		
 	}

@@ -32,12 +32,12 @@ if (window.angular){ /* ionic */
 			}
 		}
 		scale({});
-		$('#splash').fadeOut();
 		setTimeout(function(){
-			setUpFielders();
-			$(document).click(setUpFielders);
+			$('#splash').fadeOut(function(){
+				setUpFielders();
+				$(document).click(setUpFielders);
+			});
 		}, 2000);
-		
 	});
 
 }

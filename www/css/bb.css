@@ -270,11 +270,11 @@ span.ui-icon-loading {
 	.ui-select .ui-btn {
 		font-size: 16px;
 	}
-	#right-wrong, #click-msg {
+	#right-wrong {
 		font-size: 24px;
 	}
 	#click-msg {
-		font-size: 24px;
+		font-size: 20px;
 		bottom: 170px;
 	}
 	#my-position-button {
