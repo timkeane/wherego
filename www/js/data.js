@@ -389,7 +389,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: BASES[2], fielding: true},
 			5: {fielding: true},
 			6: {position: {left: 320, top: 300}},
-			7: {position: {left: 650, top: 240}},
+			7: {position: {left: 800, top: 450}},
 			8: {position: {left: 600, top: 200}},
 			9: {position: {left: 200, top: 250}}
 		},
@@ -402,7 +402,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: BASES[2]},
 			5: {position: BASES[3], fielding: true},
 			6: {fielding: true},
-			7: {position: {left: 650, top: 240}},
+			7: {position: {left: 800, top: 450}},
 			8: {position: {left: 485, top: 150}},
 			9: {position: {left: 300, top: 170}}		
 		},
@@ -539,7 +539,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: BASES[2]},
 			5: {fielding: true},
 			6: {position: {left: 320, top: 300}},
-			7: {position: {left: 650, top: 240}},
+			7: {position: {left: 800, top: 450}},
 			8: {position: {left: 600, top: 200}},
 			9: {position: {left: 200, top: 250}}
 		},
@@ -552,7 +552,7 @@ var FIELDER_LOCATION_BY_RUNNERS_BY_HIT = {
 			4: {position: BASES[2]},
 			5: {position: BASES[3], fielding: true},
 			6: {fielding: true},
-			7: {position: {left: 650, top: 240}},
+			7: {position: {left: 800, top: 450}},
 			8: {position: {left: 485, top: 150}},
 			9: {position: {left: 300, top: 170}}		
 		},
