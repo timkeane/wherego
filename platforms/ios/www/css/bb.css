@@ -17,30 +17,33 @@ body * {
 	-ms-user-select: none;
 	user-select: none;
 }
+body[ng-app="app"] #splash {
+	display: none;
+}
 span.ui-icon-loading {
 	background-image: none;
 }
-#intro, #field, #ball, .fielder, .batter, .runner, .ui-select .ui-btn, #audio-button,
+#splash, #field, #ball, .fielder, .batter, .runner, .ui-select .ui-btn, #audio-button,
 #right-wrong, #my-click, #click-capture, #click-msg, #pee-msg {
 	position: fixed;
 }
-#field, #intro, #click-capture {
+#field, #splash, #click-capture {
 	top: 0;
 	left: 0;
 	bottom: 0;
 	right: 0;
 }
-#intro, #click-capture {
+#splash, #click-capture {
 	z-index: 1000;
 }
-#intro {
+#splash {
 	background-color: rgb(1,166,17);
 }
-#intro table {
+#splash table {
 	width: 100%;
 	height: 100%;
 }
-#intro td {
+#splash td {
 	color: #ff0000;
 	font-size: 96px;
 	vertical-align: middle;

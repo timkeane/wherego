@@ -1,40 +1,46 @@
-// Ionic Starter App
+if (window.angular){ /* ionic */
+	
+	angular.module('app', ['ionic', 'ngCordova'])
+		.controller("SoundController", function($scope, $ionicPlatform, $cordovaMedia) {
+			$ionicPlatform.ready(function() {
+				for (var type in SOUNDS){
+					var soundType = SOUNDS[type], sources = soundType.sources;
+					for (var i = 0; i < sources.length; i++){
+						soundType.medias.push($cordovaMedia.newMedia(sources[i]));
+					}
+				};
+				scale({});
+		        navigator.splashscreen.hide();
+				setTimeout(function(){
+					setUpFielders();
+					$(document).click(setUpFielders);
+				}, 2000);
+			});
+		});
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-var controller = angular.module('app', ['ionic', 'ngCordova'])
-
-.run(function($ionicPlatform) {
-	$ionicPlatform.ready(function() {});
-})
-
-.controller("SoundController", function($scope, $ionicPlatform, $cordovaMedia) {
-	$ionicPlatform.ready(function() {
+}else{ /* web */
+	
+	$(document).ready(function(){
 		for (var type in SOUNDS){
 			var soundType = SOUNDS[type], sources = soundType.sources;
 			for (var i = 0; i < sources.length; i++){
-				soundType.medias.push($cordovaMedia.newMedia(sources[i]));
+				var audio = $('<audio type="audio/mp3"></audio>');
+				audio.addClass(type);
+				audio.attr('src', sources[i]);
+				$('body').append(audio);
+				soundType.medias.push(audio.get(0));
 			}
-		};
+		}
 		scale({});
-        navigator.splashscreen.hide();
 		setTimeout(function(){
-			setUpFielders();
-			$(document).click(setUpFielders);
+			$('#splash').fadeOut(function(){
+				setUpFielders();
+				$(document).click(setUpFielders);
+			});
 		}, 2000);
 	});
-});
 
-function audioVolume(mute){
-	console.info(type);
-	for (var type in SOUNDS){
-		var soundType = SOUNDS[type], sources = soundType.sources;
-		for (var i = 0; i < sources.length; i++){
-			soundType.medias[i].setVolume(mute);
-		}
-	};
-};
+}
 
 function playAudio(type){
 	try{
@@ -46,7 +52,20 @@ function playAudio(type){
 				soundType.next = 0;
 			}
 		}		
-	}catch(error){
-		console.error(error);
-	}
+	}catch(ignore){}
 };
+
+function audioVolume(volume){
+	for (var type in SOUNDS){
+		var soundType = SOUNDS[type], sources = soundType.sources;
+		for (var i = 0; i < sources.length; i++){
+			var audio = soundType.medias[i];
+			if (audio.setVolume){
+				soundType.medias[i].setVolume(volume);
+			}else{
+				soundType.medias[i].muted = !volume;
+			}
+		}
+	};
+};
+

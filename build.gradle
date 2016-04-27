@@ -1,0 +1,28 @@
+plugins {
+    id 'base'
+}
+
+ext {}
+
+task www() << {
+	copy {
+		from 'www'
+		include 'index.html'
+		include 'css/**'
+		include 'js/**'
+		include 'mp3/**'
+		include 'lib/jquery/**'
+		include 'lib/ionic/css/ionic.min.css'
+		into buildDir
+	}
+	def file = file("${buildDir}/index.html")
+	def origHtml = file.text
+	def newHtml = origHtml
+	newHtml = (origHtml =~ /<!-- ionic -->([\s\S]*?)<!-- ionic -->/).replaceFirst('')
+	newHtml = (newHtml =~ / ng-app\=\"app\" class\=\"platform-ios\"/).replaceFirst('')
+	file.text = newHtml;
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion '2.9'
+}
