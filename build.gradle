@@ -4,7 +4,7 @@ plugins {
 
 ext {}
 
-task www() << {
+task www(dependsOn: clean) << {
 	copy {
 		from 'www'
 		include 'index.html'
@@ -20,6 +20,7 @@ task www() << {
 	def newHtml = origHtml
 	newHtml = (origHtml =~ /<!-- ionic -->([\s\S]*?)<!-- ionic -->/).replaceFirst('')
 	newHtml = (newHtml =~ / ng-app\=\"app\" class\=\"platform-ios\"/).replaceFirst('')
+	newHtml = (newHtml =~ /<ion-content ng-controller\="SoundController"><\/ion-content>/).replaceFirst('')
 	file.text = newHtml;
 }
 

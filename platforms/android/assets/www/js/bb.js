@@ -65,7 +65,7 @@ function makeThrows(play){
 
 function clickMsg(){
 	var fielder = FIELDER[$('#my-position').val()].name, action = isMobile() ? 'Tap' : 'Click';
-	$('#click-msg').html(action + ' where the ' + fielder + ' should go...').fadeIn();
+	$('#message').html(action + ' where the ' + fielder + ' should go...').fadeIn();
 };
 
 function whereToGo(){
@@ -78,7 +78,7 @@ function whereToGo(){
 		$('#click-capture').one(
 			'click',
 			function(event){
-				$('#click-msg').fadeOut();
+				$('#message').fadeOut();
 				$('#my-click').css({left: event.pageX, top: event.pageY});
 				$('#my-click').fadeIn();
 				hitTo(hitId);

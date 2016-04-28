@@ -63,7 +63,7 @@ function makeThrows(play){
 
 function clickMsg(){
 	var fielder = FIELDER[$('#my-position').val()].name, action = isMobile() ? 'Tap' : 'Click';
-	$('#click-msg').html(action + ' where the ' + fielder + ' should go...').fadeIn();
+	$('#message').html(action + ' where the ' + fielder + ' should go...').fadeIn();
 };
 
 function whereToGo(){
@@ -76,8 +76,8 @@ function whereToGo(){
 		$('#click-capture').one(
 			'click',
 			function(event){
-				$('#click-msg').fadeOut();
-				$('#my-click').css({left: event.pageX, top: event.pageY});
+				$('#message').fadeOut();
+				$('#my-click').css({left: event.offsetX, top: event.offsetY});
 				$('#my-click').fadeIn();
 				hitTo(hitId);
 			}
@@ -92,13 +92,13 @@ function closeEnough(myPosition){
 		expected = $('#fielder' + myPosition).position(),
 		left = Math.abs(actual.left - expected.left),
 		top = Math.abs(actual.top - expected.top),
-		width = $('#my-click').width() * 0.55;
+		width = $('#my-click').width() / 2;
 	return left < width && top < width;
 };
 
 function showPositionMessage(myPosition){
 	var play = PROPER_FIELDER_POSITON[$('#runners-on').val()][$('#hit').val()];
-	$('#click-msg').html(play[myPosition].message || '').fadeIn();
+	$('#message').html(play[myPosition].message || '').fadeIn();
 };
 
 function checkMyPosition(out){
@@ -186,7 +186,7 @@ function iGottaPee(){
 };
 
 function setUpFielders(fast){
-	$('#click-msg').fadeOut();
+	$('#message').fadeOut();
 	if (!appLoaded){
 		appLoaded = true;
 		playAudio('play');
@@ -199,7 +199,7 @@ function setUpFielders(fast){
 		playAudio('good');
 		$('#my-click').fadeOut();
 		$('#hit').val('0').selectmenu('refresh');
-		$('#ball').show().animate(scale({left: 500, top: 530}), 1000);
+		$('#ball').show().animate(scale({left: 0, top: 530}), 1000);
 		$('.fielding').removeClass('fielding');
 		$('#click-capture').show();
 		$('select').selectmenu('disable');
@@ -221,6 +221,12 @@ function setUpFielders(fast){
 		
 	}
 };
+function transform(position){
+	return {
+		left: position.left + 500,
+		top: position.top
+	}
+};
 
 function scale(position){
 	var x = $(window).width() / 1001,
@@ -229,19 +235,18 @@ function scale(position){
 		fielderScale = x < y ? x : y;
 	if (position && (position.left || position.top)){
 		var scaled = {};
+		position = transform(position);
 		if (position.left){
 			scaled.left = position.left * fielderScale;
 		}
 		if (position.top){
-			scaled.top = position.top * fielderScale + offsetTop;
-		}else{
-			scaled.top = offsetTop;
+			scaled.top = position.top * fielderScale;
 		}
 		return scaled;
 	}else{
 		$('#field').css({
-			'background-size': 1000 * fielderScale + 'px',
-			top: offsetTop + 'px'
+			'width': 1000 * fielderScale + 'px',
+			'height': 1000 * fielderScale + 'px'
 		});
 		fieldersSet = false;
 		if (appLoaded){
@@ -256,7 +261,6 @@ function isMobile(){
 	return navigator.userAgent.match(/(iPad|iPhone|iPod|iOS|Android)/g) != null;	
 };
 
-var offsetTop = 20;
 var appLoaded = false;
 var fieldersSet = false;
 var playInProgress = false;

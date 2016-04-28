@@ -21,7 +21,7 @@ span.ui-icon-loading {
 	background-image: none;
 }
 #intro, #field, #ball, .fielder, .batter, .runner, .ui-select .ui-btn, #audio-button,
-#right-wrong, #my-click, #click-capture, #click-msg, #pee-msg {
+#right-wrong, #my-click, #click-capture, #message, #pee-msg {
 	position: fixed;
 }
 #field, #intro, #click-capture {
@@ -57,7 +57,7 @@ span.ui-icon-loading {
 #click-capture {
 	display: none;
 }
-#right-wrong, #click-msg {
+#right-wrong, #message {
 	color: #ffff00;
 	font-size: 32px;
 	display: none;
@@ -82,7 +82,7 @@ span.ui-icon-loading {
 	background-size: 1000px;
 	overflow: visible;
 }
-#click-msg {
+#message {
 	right: 20px;
 	bottom: 200px;
 	max-width: 250px;
@@ -204,7 +204,7 @@ span.ui-icon-loading {
 	#my-click.wrong {
 		background-size: 30px;
 	}
-	#click-msg {
+	#message {
 		font-size: 24px;
 		bottom: 170px;
 	}

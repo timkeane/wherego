@@ -24,24 +24,24 @@
 </head>
 <body ng-app="app" class="platform-ios">
 	<ion-content ng-controller="SoundController"></ion-content>
-	<div id="field"></div>
-	<div id="my-click"></div>
-	<div id="runner0" class="batter">B</div>
-	<div id="runner1" class="runner">1</div>
-	<div id="runner2" class="runner">2</div>
-	<div id="runner3" class="runner">3</div>
-	<div id="fielder1" class="fielder">P</div>
-	<div id="fielder2" class="fielder">C</div>
-	<div id="fielder3" class="fielder">1B</div>
-	<div id="fielder4" class="fielder">2B</div>
-	<div id="fielder5" class="fielder">3B</div>
-	<div id="fielder6" class="fielder">SS</div>
-	<div id="fielder7" class="fielder">RF</div>
-	<div id="fielder8" class="fielder">CF</div>
-	<div id="fielder9" class="fielder">LF</div>
-	<div id="ball" class="ball"></div>
+	<div id="field">
+		<div id="runner0" class="batter">B</div>
+		<div id="runner1" class="runner">1</div>
+		<div id="runner2" class="runner">2</div>
+		<div id="runner3" class="runner">3</div>
+		<div id="fielder1" class="fielder">P</div>
+		<div id="fielder2" class="fielder">C</div>
+		<div id="fielder3" class="fielder">1B</div>
+		<div id="fielder4" class="fielder">2B</div>
+		<div id="fielder5" class="fielder">3B</div>
+		<div id="fielder6" class="fielder">SS</div>
+		<div id="fielder7" class="fielder">RF</div>
+		<div id="fielder8" class="fielder">CF</div>
+		<div id="fielder9" class="fielder">LF</div>
+		<div id="ball" class="ball"></div>
+		<div id="pee-msg"></div>
+		<div id="my-click"></div>
 	</div>
-	<div id="pee-msg"></div>
 	<select id="my-position">
 		<option value="0">My Position...</option>
 		<option value="0">Spectator</option>
@@ -82,7 +82,7 @@
 	</select>
 	<button id="audio-button" class="mute-audio" data-role="button" data-icon="audio" data-iconpos="notext" onclick="toggleAudio();">Audio</button>
 	<div id="right-wrong">0 : 0</div>
-	<div id="click-msg"></div>
+	<div id="message"></div>
 	<div id="click-capture"></div>
 	<div id="splash" class="ball"><table><tbody><tr><td>Know Where To Go!</td></tr></tbody></table></div>
 </body>
