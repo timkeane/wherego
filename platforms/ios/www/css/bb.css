@@ -139,8 +139,8 @@ span.ui-icon-loading {
 	margin: -19px 0 0 -19px;
 	background-color: #ffff00;
 	border-radius: 20px;
-	left: 1000px;
-	top: 500px;
+	left: 200%;
+	top: 200%;
 }
 .batter, .runner {
 	width: 32px;
