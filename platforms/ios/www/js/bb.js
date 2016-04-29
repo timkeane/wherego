@@ -167,8 +167,9 @@ function iGottaPee(){
 			playAudio('pee');
 			setTimeout(function(){
 				playAudio('bad');
-				var dugout = scale({left: $(window).width() * 5, top: $(window).height() * 5});
+				var dugout = scale({x: $(window).width() * 3, y: -$(window).height() * 3});
 				$(function(){
+					fieldersSet = false;
 					peeMsg.animate(dugout, ANIMATION_DURATION);
 					fielder.animate(dugout, ANIMATION_DURATION, 
 						function(){
@@ -188,7 +189,6 @@ function iGottaPee(){
 function setUpFielders(fast){
 	$('#message').fadeOut();
 	if (!appLoaded){
-		appLoaded = true;
 		playAudio('play');
 	}
 	if (!fieldersSet && !playInProgress){
@@ -199,7 +199,7 @@ function setUpFielders(fast){
 		playAudio('good');
 		$('#my-click').fadeOut();
 		$('#hit').val('0').selectmenu('refresh');
-		$('#ball').show().animate(scale({left: 0, top: 530}), 1000);
+		$('#ball').show().animate(scale({x: 0, y: -35}), 1000);
 		$('.fielding').removeClass('fielding');
 		$('#click-capture').show();
 		$('select').selectmenu('disable');
@@ -207,7 +207,7 @@ function setUpFielders(fast){
 
 		$(function(){
 			$('#runner0').css({left: '-500px', top: '500px'});
-			$('#runner0').animate(scale({left: BASE.H.left + 38, top: BASE.H.top}), duration);
+			$('#runner0').animate(scale({x: BASE.H.x + 38, y: BASE.H.y}), duration);
 			$('#fielder1').animate(scale(FIELDER[1].position), duration);
 			$('#fielder2').animate(scale(FIELDER[2].position), duration);
 			$('#fielder3').animate(scale(FIELDER[3].position), duration);
@@ -217,14 +217,15 @@ function setUpFielders(fast){
 			$('#fielder7').animate(scale(FIELDER[7].position), duration);
 			$('#fielder8').animate(scale(FIELDER[8].position), duration);
 			$('#fielder9').animate(scale(FIELDER[9].position), duration, iGottaPee);
+			appLoaded = true;
 		});
 		
 	}
 };
 function transform(position){
 	return {
-		left: position.left + 500,
-		top: position.top
+		left: position.x + 500,
+		top: Math.abs(position.y - 500)
 	}
 };
 
@@ -233,7 +234,7 @@ function scale(position){
 		y = $(window).height() / 872,
 		fieldScale = x > y ? x : y,
 		fielderScale = x < y ? x : y;
-	if (position && (position.left || position.top)){
+	if (position && (!isNaN(position.x) || !isNaN(position.y))){
 		var scaled = {};
 		position = transform(position);
 		if (position.left){

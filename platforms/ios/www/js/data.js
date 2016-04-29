@@ -1,34 +1,34 @@
 var BASE = {
-	1: {left: 175, top: 500},
-	2: {left: 0, top: 325},
-	3: {left: -175, top: 500},
-	H: {left: 0, top: 665}
+	1: {x: 175, y: 0},
+	2: {x: 0, y: 175},
+	3: {x: -175, y: 0},
+	H: {x: 0, y: -165}
 };
 
 var FIELDER = {
-	1: {position: {left: 0, top: 500}, name: 'Pitcher'}, 
-	2: {position: {left: 0, top: 710}, name: 'Catcher'}, 
-	3: {position: {left: 180, top: 420}, name: 'First Baseman'}, 
-	4: {position: {left: 90, top: 330}, name: 'Second Baseman'}, 
-	5: {position: {left: -180, top: 420}, name: 'Third Baseman'},
-	6: {position: {left: -90, top: 330}, name: 'Shortstop'},
-	7: {position: {left: 280, top: 250}, name: 'Right Fielder'},
-	8: {position: {left: 0, top: 100}, name: 'Center Fielder'},
-	9: {position: {left: -280, top: 250}, name: 'Left Fielder'}
+	1: {position: {x: 0, y: 0}, name: 'Pitcher'}, 
+	2: {position: {x: 0, y: -210}, name: 'Catcher'}, 
+	3: {position: {x: 180, y: 80}, name: 'First Baseman'}, 
+	4: {position: {x: 90, y: 170}, name: 'Second Baseman'}, 
+	5: {position: {x: -180, y: 80}, name: 'Third Baseman'},
+	6: {position: {x: -90, y: 170}, name: 'Shortstop'},
+	7: {position: {x: 280, y: 250}, name: 'Right Fielder'},
+	8: {position: {x: 0, y: 400}, name: 'Center Fielder'},
+	9: {position: {x: -280, y: 250}, name: 'Left Fielder'}
 };
 
 var BACKUP = { /* fielder : backs-up-fielder */
 	1: {
-		2: {position: {left: 0, top: 750}, message: 'The Pitcher backs up Home Plate'}
+		2: {position: {x: 0, y: -250}, message: 'The Pitcher backs up Home Plate'}
 	},
 	2: {
-		3: {position: {left: 185, top: 575}, message: 'The Catcher backs up First Base'}
+		3: {position: {x: 185, y: -75}, message: 'The Catcher backs up First Base'}
 	},
 	7: {
-		3: {position: {left: 300, top: 450}, message: 'The Right Fielder backs up First Base'}
+		3: {position: {x: 300, y: 50}, message: 'The Right Fielder backs up First Base'}
 	},
 	9: {
-		5: {position: {left: -300, top: 450}, message: 'The Left Fielder backs up Third Base'}
+		5: {position: {x: -300, y: 50}, message: 'The Left Fielder backs up Third Base'}
 	}
 };
 
@@ -53,52 +53,52 @@ var COVER = { /* base : fielder */
 var CUTOFF = { /* hit-to : cutoff-fielder : throw-to-base */
 	7:{
 		4: {
-			2: {position: {left: 150, top: 280}, message: 'The Second Baseman gets the cutoff throw from Right Field and relays to Second Base'},
-			3: {position: {left: 150, top: 320}, message: 'The Second Baseman gets the cutoff throw from Right Field and relays to Third Base'},
-			H: {position: {left: 200, top: 380}, message: 'The Second Baseman gets the cutoff throw from Right Field and relays to Home Plate'}
+			2: {position: {x: 150, y: 220}, message: 'The Second Baseman gets the cutoff throw from Right Field and relays to Second Base'},
+			3: {position: {x: 150, y: 180}, message: 'The Second Baseman gets the cutoff throw from Right Field and relays to Third Base'},
+			H: {position: {x: 200, y: 120}, message: 'The Second Baseman gets the cutoff throw from Right Field and relays to Home Plate'}
 		}
 	},
 	RC:{
 		4: {
-			2: {position: {left: 80, top: 240}, message: 'The Second Baseman gets the cutoff throw from Right Field and relays to Second Base'},
-			3: {position: {left: 50, top: 240}, message: 'The Second Baseman gets the cutoff throw from Right Field and relays to Third Base'},
-			H: {position: {left: 100, top: 320}, message: 'The Second Baseman gets the cutoff throw from Right Field and relays to Home Plate'}
+			2: {position: {x: 80, y: 260}, message: 'The Second Baseman gets the cutoff throw from Right Field and relays to Second Base'},
+			3: {position: {x: 50, y: 260}, message: 'The Second Baseman gets the cutoff throw from Right Field and relays to Third Base'},
+			H: {position: {x: 100, y: 180}, message: 'The Second Baseman gets the cutoff throw from Right Field and relays to Home Plate'}
 		}
 	},
 	8: {
 		6: {
-			2: {position: {left: 0, top: 220}, message: 'The Shortstop gets the cutoff throw from Center Field and relays to Second Base'},
-			3: {position: {left: -80, top: 280}, message: 'The Shortstop gets the cutoff throw from Center Field and relays to Third Base'},
-			H: {position: {left: 0, top: 250}, message: 'The Shortstop gets the cutoff throw from Center Field and relays to Home Plate'}
+			2: {position: {x: 0, y: 280}, message: 'The Shortstop gets the cutoff throw from Center Field and relays to Second Base'},
+			3: {position: {x: -80, y: 220}, message: 'The Shortstop gets the cutoff throw from Center Field and relays to Third Base'},
+			H: {position: {x: 0, y: 250}, message: 'The Shortstop gets the cutoff throw from Center Field and relays to Home Plate'}
 		}
 	},
 	LC: {
 		6: {
-			2: {position: {left: -80, top: 240}, message: 'The Shortstop gets the cutoff throw from Left Field and relays to Second Base'},
-			3: {position: {left: -170, top: 300}, message: 'The Shortstop gets the cutoff throw from Left Field and relays to Third Base'},
-			H: {position: {left: -100, top: 320}, message: 'The Shortstop gets the cutoff throw from Left Field and relays to Home Plate'}
+			2: {position: {x: -80, y: 260}, message: 'The Shortstop gets the cutoff throw from Left Field and relays to Second Base'},
+			3: {position: {x: -170, y: 200}, message: 'The Shortstop gets the cutoff throw from Left Field and relays to Third Base'},
+			H: {position: {x: -100, y: 180}, message: 'The Shortstop gets the cutoff throw from Left Field and relays to Home Plate'}
 		}
 	},
 	9: {
 		6: {
-			9: {position: {left: -120, top: 80}, message: 'The Shortstop gets the cutoff throw from Left Field and relays to Second Base'},
-			3: {position: {left: -240, top: 360}, message: 'The Shortstop gets the cutoff throw from Left Field and relays to Third Base'},
-			H: {position: {left: -200, top: 380}, message: 'The Shortstop gets the cutoff throw from Left Field and relays to Home Plate'}
+			9: {position: {x: -120, y: 420}, message: 'The Shortstop gets the cutoff throw from Left Field and relays to Second Base'},
+			3: {position: {x: -240, y: 140}, message: 'The Shortstop gets the cutoff throw from Left Field and relays to Third Base'},
+			H: {position: {x: -200, y: 120}, message: 'The Shortstop gets the cutoff throw from Left Field and relays to Home Plate'}
 		}
 	}
 };
 
 var HIT_LOCATION = {
 	1: FIELDER[1].position,
-	2: {left: 0, top: 600},
+	2: {x: 0, y: -100},
 	3: FIELDER[3].position,
 	4: FIELDER[4].position,
 	5: FIELDER[5].position,
 	6: FIELDER[6].position,
 	7: FIELDER[7].position,
-	RC: {left: 150, top: 150},
+	RC: {x: 150, y: 350},
 	8: FIELDER[8].position,
-	LC: {left: -150, top: 150},
+	LC: {x: -150, y: 350},
 	9: FIELDER[9].position
 };
 
@@ -111,22 +111,22 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: {message: 'The Pitcher fields the ball and throws to First Base'},
 			2: BACKUP[2][3],
 			3: COVER[1][3],
-			4: {position: {left: 60, top: 420}},
-			5: {position: {left: -60, top: 420}},
+			4: {position: {x: 60, y: 80}},
+			5: {position: {x: -60, y: 80}},
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 0, top: 120}},
+			8: {position: {x: 0, y: 380}},
 			9: {}
 		},
 		2: {
 			fielding: [2, 3],
 			throwsToMake: [3],
 			out: true,
-			1: {position: {left: 0, top: 530}},
+			1: {position: {x: 0, y: -30}},
 			2: {position: HIT_LOCATION[2]},
 			3: COVER[1][3],
-			4: {position: {left: 195, top: 340}},
-			5: {position: {left: -100, top: 485}},
+			4: {position: {x: 195, y: 160}},
+			5: {position: {x: -100, y: 15}},
 			6: COVER[2][6],
 			7: BACKUP[7][3],
 			8: {},
@@ -139,7 +139,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: COVER[1][1],
 			2: BACKUP[2][3],
 			3: {},
-			4: {position: {left: 195, top: 340}},
+			4: {position: {x: 195, y: 160}},
 			5: {},
 			6: COVER[2][6],
 			7: BACKUP[7][3],
@@ -157,8 +157,8 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: {},
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 125, top: 170}},
-			9: {position: {left: -200, top: 170}}		
+			8: {position: {x: 125, y: 330}},
+			9: {position: {x: -200, y: 330}}		
 		},
 		5: {
 			fielding: [3, 5],
@@ -169,10 +169,10 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			3: COVER[1][3],
 			4: COVER[2][4],
 			5: {},
-			6: {position: {left: -180, top: 300}},
+			6: {position: {x: -180, y: 200}},
 			7: BACKUP[7][3],
-			8: {position: {left: -15, top: 150}},
-			9: {position: {left: -300, top: 300}}
+			8: {position: {x: -15, y: 350}},
+			9: {position: {x: -300, y: 200}}
 		},
 		6: {
 			fielding: [3, 6],
@@ -182,11 +182,11 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			2: BACKUP[2][3],
 			3: COVER[1][3],
 			4: COVER[2][4],
-			5: {position: {left: -160, top: 280}},
+			5: {position: {x: -160, y: 220}},
 			6: {},
 			7: BACKUP[7][3],
-			8: {position: {left: -15, top: 150}},
-			9: {position: {left: -200, top: 170}}		
+			8: {position: {x: -15, y: 350}},
+			9: {position: {x: -200, y: 330}}		
 		},
 		7: {
 			fielding: [4, 6, 7],
@@ -198,8 +198,8 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: {},
-			8: {position: {left: 250, top: 170}},
-			9: {position: {left: -200, top: 300}}
+			8: {position: {x: 250, y: 330}},
+			9: {position: {x: -200, y: 200}}
 		},
 		RC: {
 			fielding: [4, 6, 8],
@@ -210,9 +210,9 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: CUTOFF.RC[4][2],
 			5: COVER[3][5],
 			6: COVER[2][6],
-			7: {position: {left: 200, top: 100}},
+			7: {position: {x: 200, y: 400}},
 			8: {position: HIT_LOCATION.RC, fielding: true},
-			9: {position: {left: -200, top: 300}}
+			9: {position: {x: -200, y: 200}}
 		},
 		8: {
 			fielding: [4, 6, 8],
@@ -223,9 +223,9 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF[8][6][2],
-			7: {position: {left: 120, top: 80}},
+			7: {position: {x: 120, y: 420}},
 			8: {},
-			9: CUTOFF[9][6][2]
+			9: {}
 		},
 		LC: {
 			fielding: [4, 6, 8],
@@ -236,9 +236,9 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF.LC[6][2],
-			7: {position: {left: 200, top: 300}},
+			7: {position: {x: 200, y: 200}},
 			8: {position: HIT_LOCATION.LC},
-			9: {position: {left: -200, top: 100}}
+			9: {position: {x: -200, y: 400}}
 		},
 		9: {
 			fielding: [4, 6, 9],
@@ -248,9 +248,9 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			3: COVER[1][3],
 			4: COVER[2][4],
 			5: COVER[3][5],
-			6: {position: {left: -150, top: 280}},
-			7: {position: {left: 200, top: 300}},
-			8: {position: {left: -250, top: 170}},
+			6: {position: {x: -150, y: 220}},
+			7: {position: {x: 200, y: 200}},
+			8: {position: {x: -250, y: 330}},
 			9: {}
 		}
 	},
@@ -263,27 +263,27 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: {},
 			2: BACKUP[2][3],
 			3: COVER[1][3],
-			4: {position: {left: 60, top: 420}},
-			5: {position: {left: -60, top: 420}},
+			4: {position: {x: 60, y: 80}},
+			5: {position: {x: -60, y: 80}},
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 0, top: 150}},
-			9: {position: {left: -150, top: 240}}
+			8: {position: {x: 0, y: 350}},
+			9: {position: {x: -150, y: 260}}
 		},
 		2: {
 			fielding: [2, 3, 6],
 			throwsToMake: [6, 3],
 			advance: [1],
 			out: true,
-			1: {position: {left: 0, top: 530}},
+			1: {position: {x: 0, y: -30}},
 			2: {position: HIT_LOCATION[2]},
 			3: COVER[1][3],
-			4: {position: {left: 195, top: 340}},
+			4: {position: {x: 195, y: 160}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 0, top: 150}},
-			9: {position: {left: -150, top: 240}}
+			8: {position: {x: 0, y: 350}},
+			9: {position: {x: -150, y: 260}}
 		},
 		3: {
 			fielding: [1, 3, 6],
@@ -293,12 +293,12 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: COVER[1][1],
 			2: BACKUP[2][3],
 			3: {},
-			4: {position: {left: 195, top: 340}},
+			4: {position: {x: 195, y: 160}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 0, top: 150}},
-			9: {position: {left: -150, top: 240}}
+			8: {position: {x: 0, y: 350}},
+			9: {position: {x: -150, y: 260}}
 		},
 		4: {
 			fielding: [3, 4, 6],
@@ -312,8 +312,8 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 125, top: 170}},
-			9: {position: {left: -150, top: 240}}
+			8: {position: {x: 125, y: 330}},
+			9: {position: {x: -150, y: 260}}
 		},
 		5: {
 			fielding: [3, 4, 5],
@@ -325,10 +325,10 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			3: COVER[1][3],
 			4: COVER[2][4],
 			5: {},
-			6: {position: {left: -180, top: 300}},
-			7: {position: {left: 150, top: 240}},
-			8: {position: {left: -15, top: 150}},
-			9: {position: {left: -300, top: 250}}
+			6: {position: {x: -180, y: 200}},
+			7: {position: {x: 150, y: 260}},
+			8: {position: {x: -15, y: 350}},
+			9: {position: {x: -300, y: 250}}
 		},
 		6: {
 			fielding: [3, 4, 6],
@@ -338,11 +338,11 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			2: BACKUP[2][3],
 			3: COVER[1][3],
 			4: COVER[2][4],
-			5: {position: {left: -160, top: 280}},
+			5: {position: {x: -160, y: 220}},
 			6: {},
-			7: {position: {left: 150, top: 240}},
-			8: {position: {left: -15, top: 150}},
-			9: {position: {left: -200, top: 170}}		
+			7: {position: {x: 150, y: 260}},
+			8: {position: {x: -15, y: 350}},
+			9: {position: {x: -200, y: 330}}		
 		},
 		7: {
 			fielding: [4, 5, 7],
@@ -355,8 +355,8 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: {},
-			8: {position: {left: 250, top: 170}},
-			9: {position: {left: -200, top: 170}}
+			8: {position: {x: 250, y: 330}},
+			9: {position: {x: -200, y: 330}}
 		},
 		RC: {
 			fielding: [4, 5, 8],
@@ -368,7 +368,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: CUTOFF.RC[4][2],
 			5: COVER[3][5],
 			6: COVER[2][6],
-			7: {position: {left: 200, top: 100}},
+			7: {position: {x: 200, y: 400}},
 			8: {position: HIT_LOCATION.RC},
 			9: BACKUP[9][5]
 		},
@@ -382,7 +382,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF[8][6][3],
-			7: {position: {left: 120, top: 80}},
+			7: {position: {x: 120, y: 420}},
 			8: {},
 			9: CUTOFF[9][6][2]
 		},
@@ -396,9 +396,9 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF.LC[6][3],
-			7: {position: {left: 200, top: 300}},
+			7: {position: {x: 200, y: 200}},
 			8: {position: HIT_LOCATION.LC},
-			9: {position: {left: -200, top: 100}}
+			9: {position: {x: -200, y: 400}}
 		},
 		9: {
 			fielding: [5, 6, 9],
@@ -410,8 +410,8 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF[9][6][3],
-			7: {position: {left: 200, top: 300}},
-			8: {position: {left: -200, top: 200}},
+			7: {position: {x: 200, y: 200}},
+			8: {position: {x: -200, y: 300}},
 			9: {}
 		}
 	},
@@ -424,11 +424,11 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: {},
 			2: COVER.H[2],
 			3: COVER[1][3],
-			4: {position: {left: 60, top: 420}},
+			4: {position: {x: 60, y: 80}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 0, top: 150}},
+			8: {position: {x: 0, y: 350}},
 			9: BACKUP[9][5]
 		},
 		2: {
@@ -436,14 +436,14 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			throwsToMake: [5, 3],
 			advance: [1, 2],
 			out: true,
-			1: {position: {left: 0, top: 530}},
+			1: {position: {x: 0, y: -30}},
 			2: {position: HIT_LOCATION[2]},
 			3: COVER[1][3],
-			4: {position: {left: 195, top: 340}},
+			4: {position: {x: 195, y: 160}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 0, top: 150}},
+			8: {position: {x: 0, y: 350}},
 			9: BACKUP[9][5]
 		},
 		3: {
@@ -454,11 +454,11 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: COVER[1][1],
 			2: COVER.H[2],
 			3: {},
-			4: {position: {left: 195, top: 340}},
+			4: {position: {x: 195, y: 160}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 0, top: 150}},
+			8: {position: {x: 0, y: 350}},
 			9: BACKUP[9][5]
 		},
 		4: {
@@ -473,7 +473,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 125, top: 170}},
+			8: {position: {x: 125, y: 330}},
 			9: BACKUP[9][5]
 		},
 		5: {
@@ -486,10 +486,10 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			3: COVER[1][3],
 			4: COVER[2][4],
 			5: {},
-			6: {position: {left: -180, top: 300}},
+			6: {position: {x: -180, y: 200}},
 			7: BACKUP[7][3],
-			8: {position: {left: 100, top: 200}},
-			9: {position: {left: -300, top: 250}}
+			8: {position: {x: 100, y: 300}},
+			9: {position: {x: -300, y: 250}}
 		},
 		6: {
 			fielding: [3, 5, 6],
@@ -502,8 +502,8 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: COVER[3][5],
 			6: {},
 			7: BACKUP[7][3],
-			8: {position: {left: -15, top: 150}},
-			9: {position: {left: -200, top: 170}}		
+			8: {position: {x: -15, y: 350}},
+			9: {position: {x: -200, y: 330}}		
 		},
 		7: {
 			fielding: [2, 4, 7],
@@ -516,7 +516,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: {},
-			8: {position: {left: 250, top: 170}},
+			8: {position: {x: 250, y: 330}},
 			9: BACKUP[9][5]
 		},
 		RC: {
@@ -529,7 +529,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: CUTOFF.RC[4].H,
 			5: COVER[3][5],
 			6: COVER[2][6],
-			7: {position: {left: 200, top: 100}},
+			7: {position: {x: 200, y: 400}},
 			8: {position: HIT_LOCATION.RC},
 			9: BACKUP[9][5]
 		},
@@ -543,7 +543,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF[8][6].H,
-			7: {position: {left: 120, top: 80}},
+			7: {position: {x: 120, y: 420}},
 			8: {},
 			9: CUTOFF[9][6][2]
 		},
@@ -557,9 +557,9 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF.LC[6].H,
-			7: {position: {left: 200, top: 300}},
+			7: {position: {x: 200, y: 200}},
 			8: {position: HIT_LOCATION.LC},
-			9: {position: {left: -200, top: 100}}
+			9: {position: {x: -200, y: 400}}
 		},
 		9: {
 			fielding: [2, 6, 9],
@@ -571,8 +571,8 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF[9][6].H,
-			7: {position: {left: 200, top: 300}},
-			8: {position: {left: -200, top: 200}},
+			7: {position: {x: 200, y: 200}},
+			8: {position: {x: -200, y: 300}},
 			9: {}
 		}
 	},
@@ -585,11 +585,11 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: {},
 			2: COVER.H[2],
 			3: COVER[1][3],
-			4: {position: {left: 60, top: 420}},
+			4: {position: {x: 60, y: 80}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 0, top: 150}},
+			8: {position: {x: 0, y: 350}},
 			9: BACKUP[9][5]
 		},
 		2: {
@@ -597,14 +597,14 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			throwsToMake: [5, 3],
 			advance: [1, 2, 3],
 			out: true,
-			1: {position: {left: 0, top: 530}},
+			1: {position: {x: 0, y: -30}},
 			2: {position: HIT_LOCATION[2]},
 			3: COVER[1][3],
-			4: {position: {left: 195, top: 340}},
+			4: {position: {x: 195, y: 160}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 0, top: 150}},
+			8: {position: {x: 0, y: 350}},
 			9: BACKUP[9][5]
 		},
 		3: {
@@ -615,11 +615,11 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: COVER[1][1],
 			2: COVER.H[2],
 			3: {},
-			4: {position: {left: 195, top: 340}},
+			4: {position: {x: 195, y: 160}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 0, top: 150}},
+			8: {position: {x: 0, y: 350}},
 			9: BACKUP[9][5]
 		},
 		4: {
@@ -634,7 +634,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 125, top: 170}},
+			8: {position: {x: 125, y: 330}},
 			9: BACKUP[9][5]
 		},
 		5: {
@@ -647,10 +647,10 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			3: COVER[1][3],
 			4: COVER[2][4],
 			5: {},
-			6: {position: {left: -180, top: 300}},
+			6: {position: {x: -180, y: 200}},
 			7: BACKUP[7][3],
-			8: {position: {left: 100, top: 200}},
-			9: {position: {left: -300, top: 250}}
+			8: {position: {x: 100, y: 300}},
+			9: {position: {x: -300, y: 250}}
 		},
 		6: {
 			fielding: [2, 5, 6],
@@ -663,8 +663,8 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: COVER[3][5],
 			6: {},
 			7: BACKUP[7][3],
-			8: {position: {left: -15, top: 150}},
-			9: {position: {left: -200, top: 170}}		
+			8: {position: {x: -15, y: 350}},
+			9: {position: {x: -200, y: 330}}		
 		},
 		7: {
 			fielding: [2, 4, 7],
@@ -673,11 +673,11 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: BACKUP[1][2],
 			2: COVER.H[2],
 			3: COVER[1][3],
-			4: {position: {left: 200, top: 380}},
+			4: {position: {x: 200, y: 120}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: {},
-			8: {position: {left: 250, top: 170}},
+			8: {position: {x: 250, y: 330}},
 			9: BACKUP[9][5]
 		},
 		RC: {
@@ -690,7 +690,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: CUTOFF.RC[4].H,
 			5: COVER[3][5],
 			6: COVER[2][6],
-			7: {position: {left: 200, top: 100}},
+			7: {position: {x: 200, y: 400}},
 			8: {position: HIT_LOCATION.RC},
 			9: BACKUP[9][5]
 		},
@@ -704,7 +704,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF[8][6].H,
-			7: {position: {left: 120, top: 80}},
+			7: {position: {x: 120, y: 420}},
 			8: {},
 			9: CUTOFF[9][6][2]
 		},
@@ -718,9 +718,9 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF.LC[6].H,
-			7: {position: {left: 200, top: 300}},
+			7: {position: {x: 200, y: 200}},
 			8: {position: HIT_LOCATION.LC},
-			9: {position: {left: -200, top: 100}}
+			9: {position: {x: -200, y: 400}}
 		},
 		9: {
 			fielding: [2, 6, 9],
@@ -732,8 +732,8 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF[9][6].H,
-			7: {position: {left: 200, top: 300}},
-			8: {position: {left: -200, top: 200}},
+			7: {position: {x: 200, y: 200}},
+			8: {position: {x: -200, y: 300}},
 			9: {}
 		}
 	},
@@ -745,25 +745,25 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: {},
 			2: BACKUP[2][3],
 			3: COVER[1][3],
-			4: {position: {left: 60, top: 420}},
+			4: {position: {x: 60, y: 80}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 0, top: 120}},
+			8: {position: {x: 0, y: 380}},
 			9: BACKUP[9][5]
 		},
 		2: {
 			fielding: [2, 3],
 			throwsToMake: [3],
 			out: true,
-			1: {position: {left: 0, top: 530}},
+			1: {position: {x: 0, y: -30}},
 			2: {position: HIT_LOCATION[2]},
 			3: COVER[1][3],
-			4: {position: {left: 195, top: 340}},
+			4: {position: {x: 195, y: 160}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: -15, top: 120}},
+			8: {position: {x: -15, y: 380}},
 			9: BACKUP[9][5]
 		},
 		3: {
@@ -773,7 +773,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: COVER[1][1],
 			2: BACKUP[2][3],
 			3: {},
-			4: {position: {left: 195, top: 340}},
+			4: {position: {x: 195, y: 160}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
@@ -791,7 +791,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 125, top: 170}},
+			8: {position: {x: 125, y: 330}},
 			9: BACKUP[9][5]
 		},
 		5: {
@@ -803,9 +803,9 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			3: COVER[1][3],
 			4: COVER[2][4],
 			5: {},
-			6: {position: {left: -180, top: 300}},
+			6: {position: {x: -180, y: 200}},
 			7: BACKUP[7][3],
-			8: {position: {left: -15, top: 150}},
+			8: {position: {x: -15, y: 350}},
 			9: BACKUP[9][5]
 		},
 		6: {
@@ -819,7 +819,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: COVER[3][5],
 			6: {},
 			7: BACKUP[7][3],
-			8: {position: {left: -15, top: 150}},
+			8: {position: {x: -15, y: 350}},
 			9: BACKUP[9][5]
 		},
 		7: {
@@ -833,7 +833,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: {},
-			8: {position: {left: 250, top: 170}},
+			8: {position: {x: 250, y: 330}},
 			9: BACKUP[9][5]
 		},
 		RC: {
@@ -846,7 +846,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: CUTOFF.RC[4].H,
 			5: COVER[3][5],
 			6: COVER[2][6],
-			7: {position: {left: 200, top: 100}},
+			7: {position: {x: 200, y: 400}},
 			8: {position: HIT_LOCATION.RC},
 			9: BACKUP[9][5]
 		},
@@ -860,7 +860,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF[8][6].H,
-			7: {position: {left: 120, top: 80}},
+			7: {position: {x: 120, y: 420}},
 			8: {},
 			9: CUTOFF[9][6][2]
 		},
@@ -874,9 +874,9 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF.LC[6].H,
-			7: {position: {left: 200, top: 300}},
+			7: {position: {x: 200, y: 200}},
 			8: {position: HIT_LOCATION.LC},
-			9: {position: {left: -200, top: 100}}
+			9: {position: {x: -200, y: 400}}
 		},
 		9: {
 			fielding: [2, 6, 9],
@@ -888,8 +888,8 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF[9][6].H,
-			7: {position: {left: 200, top: 300}},
-			8: {position: {left: -200, top: 200}},
+			7: {position: {x: 200, y: 200}},
+			8: {position: {x: -200, y: 300}},
 			9: {}
 		}
 	},
@@ -901,11 +901,11 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: {},
 			2: COVER.H[2],
 			3: COVER[1][3],
-			4: {position: {left: 60, top: 420}},
+			4: {position: {x: 60, y: 80}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 0, top: 120}},
+			8: {position: {x: 0, y: 380}},
 			9: BACKUP[9][5]
 		},
 		2: {
@@ -915,11 +915,11 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: COVER[1].H,
 			2: {position: HIT_LOCATION[2]},
 			3: COVER[1][3],
-			4: {position: {left: 195, top: 340}},
+			4: {position: {x: 195, y: 160}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: -15, top: 120}},
+			8: {position: {x: -15, y: 380}},
 			9: BACKUP[9][5]
 		},
 		3: {
@@ -929,11 +929,11 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: COVER[1][1],
 			2: COVER.H[2],
 			3: {},
-			4: {position: {left: 195, top: 340}},
+			4: {position: {x: 195, y: 160}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 125, top: 170}},
+			8: {position: {x: 125, y: 330}},
 			9: BACKUP[9][5]
 		},
 		4: {
@@ -947,7 +947,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 125, top: 170}},
+			8: {position: {x: 125, y: 330}},
 			9: BACKUP[9][5]
 		},
 		5: {
@@ -959,9 +959,9 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			3: COVER[1][3],
 			4: COVER[2][4],
 			5: {},
-			6: {position: {left: -180, top: 300}},
+			6: {position: {x: -180, y: 200}},
 			7: BACKUP[7][3],
-			8: {position: {left: -15, top: 150}},
+			8: {position: {x: -15, y: 350}},
 			9: BACKUP[9][5]
 		},
 		6: {
@@ -975,7 +975,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: COVER[3][5],
 			6: {},
 			7: BACKUP[7][3],
-			8: {position: {left: -15, top: 150}},
+			8: {position: {x: -15, y: 350}},
 			9: BACKUP[9][5]
 		},
 		7: {
@@ -989,7 +989,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: {},
-			8: {position: {left: 250, top: 170}},
+			8: {position: {x: 250, y: 330}},
 			9: BACKUP[9][5]
 		},
 		RC: {
@@ -1002,7 +1002,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: CUTOFF.RC[4][2],
 			5: COVER[3][5],
 			6: {position: BASE[2], fielding: true},
-			7: {position: {left: 200, top: 100}},
+			7: {position: {x: 200, y: 400}},
 			8: {position: HIT_LOCATION.RC},
 			9: BACKUP[9][5]
 		},
@@ -1016,7 +1016,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF[8][6][2],
-			7: {position: {left: 120, top: 80}},
+			7: {position: {x: 120, y: 420}},
 			8: {},
 			9: CUTOFF[9][6][2]
 		},
@@ -1030,9 +1030,9 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF.LC[6][2],
-			7: {position: {left: 200, top: 300}},
+			7: {position: {x: 200, y: 200}},
 			8: {position: HIT_LOCATION.LC},
-			9: {position: {left: -200, top: 100}}
+			9: {position: {x: -200, y: 400}}
 		},
 		9: {
 			fielding: [4, 6, 9],
@@ -1043,9 +1043,9 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			3: COVER[1][3],
 			4: COVER[2][4],
 			5: COVER[3][5],
-			6: {position: {left: -150, top: 280}},
-			7: {position: {left: 200, top: 300}},
-			8: {position: {left: -250, top: 170}},
+			6: {position: {x: -150, y: 220}},
+			7: {position: {x: 200, y: 200}},
+			8: {position: {x: -250, y: 330}},
 			9: {}
 		}
 	},
@@ -1058,11 +1058,11 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: {},
 			2: COVER.H[2],
 			3: COVER[1][3],
-			4: {position: {left: 60, top: 420}},
+			4: {position: {x: 60, y: 80}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 0, top: 150}},
+			8: {position: {x: 0, y: 350}},
 			9: BACKUP[9][5]
 		},
 		2: {
@@ -1070,14 +1070,14 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			throwsToMake: [6, 3],
 			advance: [1],
 			out: true,
-			1: {position: {left: 0, top: 530}},
+			1: {position: {x: 0, y: -30}},
 			2: {position: HIT_LOCATION[2]},
 			3: COVER[1][3],
-			4: {position: {left: 195, top: 340}},
+			4: {position: {x: 195, y: 160}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 0, top: 150}},
+			8: {position: {x: 0, y: 350}},
 			9: BACKUP[9][5]
 		},
 		3: {
@@ -1088,11 +1088,11 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: COVER[1][1],
 			2: COVER.H[2],
 			3: {},
-			4: {position: {left: 195, top: 340}},
+			4: {position: {x: 195, y: 160}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 0, top: 150}},
+			8: {position: {x: 0, y: 350}},
 			9: BACKUP[9][5]
 		},
 		4: {
@@ -1107,7 +1107,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 125, top: 170}},
+			8: {position: {x: 125, y: 330}},
 			9: BACKUP[9][5]
 		},
 		5: {
@@ -1120,9 +1120,9 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			3: COVER[1][3],
 			4: COVER[2][4],
 			5: {},
-			6: {position: {left: -180, top: 300}},
+			6: {position: {x: -180, y: 200}},
 			7: BACKUP[7][3],
-			8: {position: {left: -15, top: 150}},
+			8: {position: {x: -15, y: 350}},
 			9: BACKUP[9][5]
 		},
 		6: {
@@ -1136,7 +1136,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: COVER[3][5],
 			6: {},
 			7: BACKUP[7][3],
-			8: {position: {left: -15, top: 150}},
+			8: {position: {x: -15, y: 350}},
 			9: BACKUP[9][5]
 		},
 		7: {
@@ -1150,7 +1150,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: {},
-			8: {position: {left: 250, top: 170}},
+			8: {position: {x: 250, y: 330}},
 			9: BACKUP[9][5]
 		},
 		RC: {
@@ -1163,7 +1163,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: CUTOFF.RC[4][2],
 			5: COVER[3][5],
 			6: COVER[2][6],
-			7: {position: {left: 200, top: 100}},
+			7: {position: {x: 200, y: 400}},
 			8: {position: HIT_LOCATION.RC},
 			9: BACKUP[9][5]
 		},
@@ -1177,7 +1177,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF[8][6][3],
-			7: {position: {left: 120, top: 80}},
+			7: {position: {x: 120, y: 420}},
 			8: {},
 			9: CUTOFF[9][6][2]
 		},
@@ -1191,9 +1191,9 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF.LC[6][3],
-			7: {position: {left: 200, top: 300}},
+			7: {position: {x: 200, y: 200}},
 			8: {position: HIT_LOCATION.LC},
-			9: {position: {left: -200, top: 100}}
+			9: {position: {x: -200, y: 400}}
 		},
 		9: {
 			fielding: [5, 6, 9],
@@ -1205,8 +1205,8 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF[9][6][3],
-			7: {position: {left: 200, top: 300}},
-			8: {position: {left: -200, top: 200}},
+			7: {position: {x: 200, y: 200}},
+			8: {position: {x: -200, y: 300}},
 			9: {}
 		}
 	},
@@ -1218,25 +1218,25 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: {},
 			2: COVER.H[2],
 			3: COVER[1][3],
-			4: {position: {left: 60, top: 420}},
+			4: {position: {x: 60, y: 80}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 0, top: 150}},
+			8: {position: {x: 0, y: 350}},
 			9: BACKUP[9][5]
 		},
 		2: {
 			fielding: [2, 3],
 			throwsToMake: [3],
 			out: true,
-			1: {position: {left: 0, top: 530}},
+			1: {position: {x: 0, y: -30}},
 			2: {position: HIT_LOCATION[2]},
 			3: COVER[1][3],
-			4: {position: {left: 195, top: 340}},
+			4: {position: {x: 195, y: 160}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 0, top: 150}},
+			8: {position: {x: 0, y: 350}},
 			9: BACKUP[9][5]
 		},
 		3: {
@@ -1246,11 +1246,11 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: COVER[1][1],
 			2: COVER.H[2],
 			3: {},
-			4: {position: {left: 195, top: 340}},
+			4: {position: {x: 195, y: 160}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 0, top: 150}},
+			8: {position: {x: 0, y: 350}},
 			9: BACKUP[9][5]
 		},
 		4: {
@@ -1264,7 +1264,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: BACKUP[7][3],
-			8: {position: {left: 125, top: 170}},
+			8: {position: {x: 125, y: 330}},
 			9: BACKUP[9][5]
 		},
 		5: {
@@ -1276,10 +1276,10 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			3: COVER[1][3],
 			4: COVER[2][4],
 			5: {},
-			6: {position: {left: -180, top: 300}},
-			7: {position: {left: 150, top: 240}},
-			8: {position: {left: 100, top: 200}},
-			9: {position: {left: -300, top: 250}}
+			6: {position: {x: -180, y: 200}},
+			7: {position: {x: 150, y: 260}},
+			8: {position: {x: 100, y: 300}},
+			9: {position: {x: -300, y: 250}}
 		},
 		6: {
 			fielding: [5, 6],
@@ -1290,9 +1290,9 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: {},
-			7: {position: {left: 150, top: 240}},
-			8: {position: {left: -15, top: 150}},
-			9: {position: {left: -200, top: 170}}		
+			7: {position: {x: 150, y: 260}},
+			8: {position: {x: -15, y: 350}},
+			9: {position: {x: -200, y: 330}}		
 		},
 		7: {
 			fielding: [2, 4, 7],
@@ -1301,11 +1301,11 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			1: BACKUP[1][2],
 			2: COVER.H[2],
 			3: COVER[1][3],
-			4: {position: {left: 200, top: 380}},
+			4: {position: {x: 200, y: 120}},
 			5: COVER[3][5],
 			6: COVER[2][6],
 			7: {},
-			8: {position: {left: 250, top: 170}},
+			8: {position: {x: 250, y: 330}},
 			9: BACKUP[9][5]
 		},
 		RC: {
@@ -1318,7 +1318,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: CUTOFF.RC[4].H,
 			5: COVER[3][5],
 			6: COVER[2][6],
-			7: {position: {left: 200, top: 100}},
+			7: {position: {x: 200, y: 400}},
 			8: {position: HIT_LOCATION.RC},
 			9: BACKUP[9][5]
 		},
@@ -1332,7 +1332,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF[8][6].H,
-			7: {position: {left: 120, top: 80}},
+			7: {position: {x: 120, y: 420}},
 			8: {},
 			9: CUTOFF[9][6][2]
 		},
@@ -1346,9 +1346,9 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF.LC[6].H,
-			7: {position: {left: 200, top: 300}},
+			7: {position: {x: 200, y: 200}},
 			8: {position: HIT_LOCATION.LC},
-			9: {position: {left: -200, top: 100}}
+			9: {position: {x: -200, y: 400}}
 		},
 		9: {
 			fielding: [2, 6, 9],
@@ -1360,8 +1360,8 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			4: COVER[2][4],
 			5: COVER[3][5],
 			6: CUTOFF[9][6].H,
-			7: {position: {left: 200, top: 300}},
-			8: {position: {left: -200, top: 200}},
+			7: {position: {x: 200, y: 200}},
+			8: {position: {x: -200, y: 300}},
 			9: {}
 		}
 	}
