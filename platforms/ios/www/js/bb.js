@@ -1,3 +1,7 @@
+function position(obj){
+	return obj.position || {};
+};
+
 function hitTo(hitId){
 	if (!playInProgress){
 		var play = PROPER_FIELDER_POSITON[$('#runners-on').val()][hitId];

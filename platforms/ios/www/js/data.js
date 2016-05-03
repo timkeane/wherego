@@ -81,7 +81,7 @@ var CUTOFF = { /* hit-to : cutoff-fielder : throw-to-base */
 	},
 	9: {
 		6: {
-			9: {position: {x: -120, y: 420}, message: 'The Shortstop gets the cutoff throw from Left Field and relays to Second Base'},
+			2: {position: {x: -120, y: 420}, message: 'The Shortstop gets the cutoff throw from Left Field and relays to Second Base'},
 			3: {position: {x: -240, y: 140}, message: 'The Shortstop gets the cutoff throw from Left Field and relays to Third Base'},
 			H: {position: {x: -200, y: 120}, message: 'The Shortstop gets the cutoff throw from Left Field and relays to Home Plate'}
 		}
@@ -384,7 +384,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			6: CUTOFF[8][6][3],
 			7: {position: {x: 120, y: 420}},
 			8: {},
-			9: CUTOFF[9][6][2]
+			9: {}
 		},
 		LC: {
 			fielding: [5, 6, 8],
@@ -534,7 +534,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			9: BACKUP[9][5]
 		},
 		8: {
-			fielding: [2, 4, 8],
+			fielding: [2, 6, 8],
 			throwsToMake: [6, 2],
 			advance: [1, 2],
 			1: BACKUP[1][2],
@@ -545,7 +545,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			6: CUTOFF[8][6].H,
 			7: {position: {x: 120, y: 420}},
 			8: {},
-			9: CUTOFF[9][6][2]
+			9: {}
 		},
 		LC: {
 			fielding: [2, 6, 8],
@@ -706,7 +706,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			6: CUTOFF[8][6].H,
 			7: {position: {x: 120, y: 420}},
 			8: {},
-			9: CUTOFF[9][6][2]
+			9: {}
 		},
 		LC: {
 			fielding: [2, 6, 8],
@@ -862,7 +862,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			6: CUTOFF[8][6].H,
 			7: {position: {x: 120, y: 420}},
 			8: {},
-			9: CUTOFF[9][6][2]
+			9: {}
 		},
 		LC: {
 			fielding: [2, 6, 8],
@@ -1018,7 +1018,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			6: CUTOFF[8][6][2],
 			7: {position: {x: 120, y: 420}},
 			8: {},
-			9: CUTOFF[9][6][2]
+			9: {}
 		},
 		LC: {
 			fielding: [4, 6, 8],
@@ -1179,7 +1179,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			6: CUTOFF[8][6][3],
 			7: {position: {x: 120, y: 420}},
 			8: {},
-			9: CUTOFF[9][6][2]
+			9: {}
 		},
 		LC: {
 			fielding: [5, 6, 8],
@@ -1334,7 +1334,7 @@ var PROPER_FIELDER_POSITON = { /* runners-on : hit-to : fielder-position */
 			6: CUTOFF[8][6].H,
 			7: {position: {x: 120, y: 420}},
 			8: {},
-			9: CUTOFF[9][6][2]
+			9: {}
 		},
 		LC: {
 			fielding: [2, 6, 8],
